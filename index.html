@@ -1,0 +1,149 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+
+<div class=example>
+<div id="drop_zone">Drop Time Report XML here...</div>
+</div>
+<div id="progress_bar"><div class="percent">0%</div></div>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script>
+    var reader;
+    var progress = document.querySelector('.percent');
+
+    function errorHandler(evt) {
+        switch(evt.target.error.code) {
+            case evt.target.error.NOT_FOUND_ERR:
+                alert('File Not Found!');
+                break;
+            case evt.target.error.NOT_READABLE_ERR:
+                alert('File is not readable');
+                break;
+            case evt.target.error.ABORT_ERR:
+                break;
+            default:
+                alert('An error occurred reading this file.');
+        };
+    }
+
+    function updateProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+            if (percentLoaded < 100) {
+                progress.style.width = percentLoaded + '%';
+                progress.textContent = percentLoaded + '%';
+            }
+        }
+    }
+
+    function handleFileSelect(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        reader = new FileReader();
+        reader.onerror = errorHandler;
+        reader.onprogress = updateProgress;
+
+        reader.onabort = function(e) {
+            alert('File read cancelled');
+        };
+
+        reader.onloadstart = function(e) {
+            document.getElementById('progress_bar').className = 'loading';
+        };
+
+        reader.onload = function(e) {
+            progress.style.width = '100%';
+            progress.textContent = '100%';
+            setTimeout("document.getElementById('progress_bar').className='';", 2000);
+            console.log(this);
+            var xmlDoc = $.parseXML(this.result);
+            xml = $( xmlDoc )
+            console.log(xmlDoc);
+            entries = xml.find('entry')
+            var projectTimeMap = {}
+            var userName;
+            $.each(entries, function(i, item) {
+                var p = $(this).find('project').text();
+                var v = parseFloat($(this).find('time').text());
+                userName = $(this).find('name').text()
+                console.log(userName);
+                console.log(p);
+                console.log(v);
+                if (p in projectTimeMap)
+                    projectTimeMap[p] += v;
+                else
+                    projectTimeMap[p] = v;
+
+            });
+            console.log(projectTimeMap);
+            var plotData = []
+            for(var p in projectTimeMap) {
+                var d = { name: p, y: projectTimeMap[p]}
+                plotData.push(d);
+            }
+            plotReport(userName, plotData);
+        }
+
+        reader.readAsText(evt.dataTransfer.files[0], "UTF-8");
+    }
+
+    function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy';
+    }
+
+    // Setup the dnd listeners.
+    var dropZone = document.getElementById('drop_zone');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener('drop', handleFileSelect, false);
+
+    var plotReport = function (userName, plotData) {
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits : false,
+            exporting: { 
+                enabled: false 
+            },
+            title: {
+                text: userName
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (<b>{point.y}</b>)'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f}% (<b>{point.y}</b>)',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: plotData
+            }]
+        });
+    };
+</script>
+
+</body>
+</html>
