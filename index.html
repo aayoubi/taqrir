@@ -15,8 +15,8 @@
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 <script>
-    var reader;
-    var progress = document.querySelector('.percent');
+    "use strict";
+    const progress = document.querySelector('.percent');
 
     function errorHandler(evt) {
         switch(evt.target.error.code) {
@@ -46,7 +46,7 @@
     function handleFileSelect(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        reader = new FileReader();
+        const reader = new FileReader();
         reader.onerror = errorHandler;
         reader.onprogress = updateProgress;
 
@@ -62,35 +62,27 @@
             progress.style.width = '100%';
             progress.textContent = '100%';
             setTimeout("document.getElementById('progress_bar').className='';", 2000);
-            console.log(this);
-            var xmlDoc = $.parseXML(this.result);
-            xml = $( xmlDoc )
-            console.log(xmlDoc);
-            entries = xml.find('entry')
-            var projectTimeMap = {}
+            const xmlDoc = $.parseXML(this.result);
+            const entries = $(xmlDoc).find('entry')
+            const projectTimeMap = {}
+            var totalMD = 0;
             var userName;
             $.each(entries, function(i, item) {
                 var p = $(this).find('project').text();
                 var v = parseFloat($(this).find('time').text());
-                userName = $(this).find('name').text()
-                console.log(userName);
-                console.log(p);
-                console.log(v);
+                userName = $(this).find('name').text();
+                totalMD += v;
                 if (p in projectTimeMap)
                     projectTimeMap[p] += v;
                 else
                     projectTimeMap[p] = v;
-
             });
-            console.log(projectTimeMap);
-            var plotData = []
-            for(var p in projectTimeMap) {
-                var d = { name: p, y: projectTimeMap[p]}
-                plotData.push(d);
-            }
-            plotReport(userName, plotData);
+            const plotData = []
+            $.each(projectTimeMap, function(k, v) {
+                plotData.push({ name: k, y: v})
+            });
+            plotReport(userName + " " + totalMD, plotData);
         }
-
         reader.readAsText(evt.dataTransfer.files[0], "UTF-8");
     }
 
@@ -100,7 +92,6 @@
         evt.dataTransfer.dropEffect = 'copy';
     }
 
-    // Setup the dnd listeners.
     var dropZone = document.getElementById('drop_zone');
     dropZone.addEventListener('dragover', handleDragOver, false);
     dropZone.addEventListener('drop', handleFileSelect, false);
@@ -121,7 +112,7 @@
                 text: userName
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (<b>{point.y}</b>)'
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (<b>{point.y}</b> MD)'
             },
             plotOptions: {
                 pie: {
@@ -129,7 +120,7 @@
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f}% (<b>{point.y}</b>)',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f}% (<b>{point.y}</b> MD)',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
