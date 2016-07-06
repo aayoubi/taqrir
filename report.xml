@@ -1,0 +1,2473 @@
+<html dir='ltr' lang='en'>
+<!-- Copyright (c) 2000, 2009, Oracle. All rights reserved. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><body><table border='1' cellpadding='3' cellspacing='0'>
+<tr>
+<th>Resource Name</th><th>Resource BU</th><th>Resource Team</th><th>Short Desc</th><th>Project BU</th><th>Project Description</th><th>Date</th><th>Location</th><th>Activity Name</th><th>Billing Action</th><th>Day Values</th><th>Header Comments</th><th>Line Comments</th><th>Time Report ID</th><th>Time Report Line</th><th>Time Report Status</th><th>Employee Status</th></tr>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/01/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/09/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/01/2015</td>
+<td>001 - MSA  Office</td>
+<td>OSP-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/01/2015</td>
+<td>001 - MSA  Office</td>
+<td>CUS-DBS-DEV</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>CUS-DBS-DEV</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>CUS-DBS-DEV</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/09/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/08/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/09/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/10/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/15/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000205623</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/15/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/15/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-REALTIME</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/10/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/15/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/08/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/09/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/10/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/15/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000205796</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-PRESALES</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-HR</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/01/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/08/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/10/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/01/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.70</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/04/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.70</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/07/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/10/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/11/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/14/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/02/2015</td>
+<td>001 - MSA  Office</td>
+<td>BLEND-ASYNC-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>8</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/03/2015</td>
+<td>001 - MSA  Office</td>
+<td>BLEND-ASYNC-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>8</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/08/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>10</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/09/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000206130</td>
+<td>10</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-REALTIME</td>
+<td>Nonbill</td>
+<td>0.25</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.25</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.15</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/22/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/23/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/24/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/25/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/22/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/23/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/24/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SENSI_PHASE2</td>
+<td>Nonbill</td>
+<td>0.25</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SENSI_PHASE2</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/22/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/25/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.50</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-MEETING</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>8</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>BOHLY,VINCENT</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-MEETING</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207168</td>
+<td>8</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-MEETING</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-PRESALES</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-HR</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.70</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.70</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>6</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-CBA</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>7</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>NOSTRO-DEV</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>9</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PAC-NFR-OTHER</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>12</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>PAC-NFR-AUTH</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>13</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AYOUBI,ALI</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PAC-NFR-AUTH</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207204</td>
+<td>13</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/18/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.70</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/22/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/23/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/24/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/25/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>0.90</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/29/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/30/2015</td>
+<td>001 - MSA  Office</td>
+<td>POC-RABOBANK</td>
+<td>Nonbill</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>1</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/22/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/23/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/24/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-SUPPORT</td>
+<td>Nonbill</td>
+<td>0.30</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>2</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>PFE-QA-BUILD</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>3</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/16/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/17/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/23/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.60</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/24/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.40</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/25/2015</td>
+<td>001 - MSA  Office</td>
+<td>TRAINING</td>
+<td>Nonbill</td>
+<td>0.80</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>4</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/21/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-MEETING</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+<tr>
+<td>AL ZREIBI,JEAN</td>
+<td>MSA</td>
+<td>MSA PAC PES</td>
+<td>MSAPACPES</td>
+<td>MSA</td>
+<td>MSA-PACPES</td>
+<td>09/28/2015</td>
+<td>001 - MSA  Office</td>
+<td>PACPES-MEETING</td>
+<td>Nonbill</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td>0000207206</td>
+<td>5</td>
+<td>Approved</td>
+<td>Employee</td>
+</table>
+</body></html>
