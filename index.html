@@ -1,140 +1,35 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <meta charset="utf-8">
+    <title>React MxTime</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <!-- d3 / nvd3 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.min.css">
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.1.0/d3.min.js"></script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.min.js"></script>
+
+    <!-- highcharts -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <!-- react libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+
+    <!-- underscore -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 </head>
 
 <body>
-
-<div class=example>
-<div id="drop_zone">Drop Time Report XML here...</div>
-</div>
-<div id="progress_bar"><div class="percent">0%</div></div>
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-<script>
-    "use strict";
-    const progress = document.querySelector('.percent');
-
-    function errorHandler(evt) {
-        switch(evt.target.error.code) {
-            case evt.target.error.NOT_FOUND_ERR:
-                alert('File Not Found!');
-                break;
-            case evt.target.error.NOT_READABLE_ERR:
-                alert('File is not readable');
-                break;
-            case evt.target.error.ABORT_ERR:
-                break;
-            default:
-                alert('An error occurred reading this file.');
-        };
-    }
-
-    function updateProgress(evt) {
-        if (evt.lengthComputable) {
-            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-            if (percentLoaded < 100) {
-                progress.style.width = percentLoaded + '%';
-                progress.textContent = percentLoaded + '%';
-            }
-        }
-    }
-
-    function handleFileSelect(evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
-        const reader = new FileReader();
-        reader.onerror = errorHandler;
-        reader.onprogress = updateProgress;
-
-        reader.onabort = function(e) {
-            alert('File read cancelled');
-        };
-
-        reader.onloadstart = function(e) {
-            document.getElementById('progress_bar').className = 'loading';
-        };
-
-        reader.onload = function(e) {
-            progress.style.width = '100%';
-            progress.textContent = '100%';
-            setTimeout("document.getElementById('progress_bar').className='';", 2000);
-            const xmlDoc = $.parseXML(this.result);
-            const entries = $(xmlDoc).find('entry')
-            const projectTimeMap = {}
-            var totalMD = 0;
-            var userName;
-            $.each(entries, function(i, item) {
-                var p = $(this).find('project').text();
-                var v = parseFloat($(this).find('time').text());
-                userName = $(this).find('name').text();
-                totalMD += v;
-                if (p in projectTimeMap)
-                    projectTimeMap[p] += v;
-                else
-                    projectTimeMap[p] = v;
-            });
-            const plotData = []
-            $.each(projectTimeMap, function(k, v) {
-                plotData.push({ name: k, y: v})
-            });
-            plotReport(userName + " " + totalMD, plotData);
-        }
-        reader.readAsText(evt.dataTransfer.files[0], "UTF-8");
-    }
-
-    function handleDragOver(evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
-        evt.dataTransfer.dropEffect = 'copy';
-    }
-
-    var dropZone = document.getElementById('drop_zone');
-    dropZone.addEventListener('dragover', handleDragOver, false);
-    dropZone.addEventListener('drop', handleFileSelect, false);
-
-    var plotReport = function (userName, plotData) {
-        $('#container').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            credits : false,
-            exporting: { 
-                enabled: false 
-            },
-            title: {
-                text: userName
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (<b>{point.y}</b> MD)'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f}% (<b>{point.y}</b> MD)',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: 'Brands',
-                colorByPoint: true,
-                data: plotData
-            }]
-        });
-    };
-</script>
-
+    <div id="content"></div>
+    <script type="text/babel" src="/js/dataviz-react.js"></script>
 </body>
+
 </html>
