@@ -91,7 +91,6 @@ var TeamTable = React.createClass({
         <BarChart title="Team" seriesData={this.state.groupedReportData} drilldownData={this.state.groupedReportDrilldown} />
       </div>
     );
-    console.log(this)
     if (this.state.totalManDays === 0)
       return (null);
     else
@@ -152,7 +151,6 @@ var UserTables = React.createClass({
     },
     render: function() {
         var chartNodes = this.state.mxTimeDataByUser.map(function(userData) {
-          console.log(userData)
           var pieKey = userData.id
           var drilldownKey = userData.id + "drilldown"
           return (
