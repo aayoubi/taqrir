@@ -57,3 +57,25 @@ p, ul {
 ul {
   padding-left: 30px;
 }
+
+.team {
+  border-bottom: 1px solid #ddd;
+}
+
+.users {
+  border-bottom: 1px solid #ddd;
+}
+
+.user {
+  border-bottom: 1px solid #ddd;
+}
+
+.pieChart {
+  display:inline-block;
+  margin: 0 auto;
+}
+
+.barChart {
+  display:inline-block;
+  margin: 0 auto;
+}

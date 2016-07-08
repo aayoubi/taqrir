@@ -33,9 +33,7 @@ var MxTimeTable = React.createClass({
 });
 
 var FileSelector = React.createClass({
-  handleChange: function(evt) {
-    console.log(this);
-    var onFileSelect = this.props.onFileSelect;
+  onChange: function(evt) {
     var callback = function(status, data) {
       if (status === 'error') {
         console.log('Failed to read and parse the provided mxtime report');
@@ -48,37 +46,60 @@ var FileSelector = React.createClass({
   },
   render: function() {
     return (
-      <input type="file" id="files" onChange={this.handleChange}/>
+      <input type="file" id="files" onChange={this.onChange}/>
     );
   }
 });
 
 var TeamTable = React.createClass({
   getInitialState: function() {
-    return {mxTimeDataTotal: [], totalManDays: 0};
+    return {mxTimeDataTotal: [], totalManDays: 0, groupedReportData: [], groupedReportDrilldown: []};
   },
   extractData: function(data) {
     var totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
     var teamReportData = _.chain(data)
         .groupBy(function(e) { return e.activity; })
         .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-        .value()
-    this.setState({mxTimeDataTotal: teamReportData, totalManDays: totalManDays})
+        .value();
+
+    var groupedReportData = _.chain(data)
+        .groupBy(function(e) { return e.activity.split('-')[0]; })
+        .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .value();
+
+    var groupedReportDrilldown = []
+    _.chain(data)
+        .groupBy(function(e) { return e.activity.split('-')[0]; })
+        .each(function(group, key) {
+          var project = { "name": key, "id": key, data: [] }
+          project.data = _.chain(group)
+              .groupBy(function(e) { return e.activity; })
+              .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+              .value()
+          groupedReportDrilldown.push(project)
+        });
+
+    this.setState({
+        mxTimeDataTotal: teamReportData,
+        totalManDays: totalManDays,
+        groupedReportData: groupedReportData,
+        groupedReportDrilldown: groupedReportDrilldown})
   },
   componentWillReceiveProps: function(nextProps) {
     this.extractData(nextProps.data);
   },
   render: function() {
-    if(this.state.totalManDays === 0) {
-      var chartNode = null;
-    } else {
-      var chartNode = (<PieChart title="Team" data={this.state.mxTimeDataTotal} manDays={this.state.totalManDays}/>);
-    }
-    return (
-        <div className="teamTable">
-          {chartNode}
-        </div>
+    var chartNode = (
+      <div className="team">
+        <PieChart title="Team" data={this.state.mxTimeDataTotal} manDays={this.state.totalManDays}/>
+        <BarChart title="Team" seriesData={this.state.groupedReportData} drilldownData={this.state.groupedReportDrilldown} />
+      </div>
     );
+    console.log(this)
+    if (this.state.totalManDays === 0)
+      return (null);
+    else
+      return chartNode;
   }
 });
 
@@ -93,12 +114,40 @@ var UserTables = React.createClass({
           .uniq()
           .each(function(user) {
               var reportDataPerUser = _.chain(data)
-              .filter(function(e) { return e.user === user; })
-              .groupBy(function(e) { return e.activity; })
-              .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-              .value()
-              var userManDays = _.reduce(reportDataPerUser, function(m, e) { return m + e.y; }, 0);
-              mxTimeDataByUser.push({"id": getUID(), "user": user, "data": reportDataPerUser, "manDays": userManDays})
+                .filter(function(e) { return e.user === user; })
+                .value()
+
+              var transformedReportDataPerUser = _.chain(reportDataPerUser)
+                .filter(function(e) { return e.user === user; })
+                .groupBy(function(e) { return e.activity; })
+                .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+                .value()
+              var userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
+
+              var groupedReportDataPerUser = _.chain(reportDataPerUser)
+                .groupBy(function(e) { return e.activity.split('-')[0]; })
+                .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+                .value();
+
+              var groupedReportDrilldownPerUser = []
+              _.chain(reportDataPerUser)
+                .groupBy(function(e) { return e.activity.split('-')[0]; })
+                .each(function(group, key) {
+                  var project = { "name": key, "id": key, data: [] }
+                  project.data = _.chain(group)
+                      .groupBy(function(e) { return e.activity; })
+                      .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+                      .value()
+                  groupedReportDrilldownPerUser.push(project)
+                });
+              mxTimeDataByUser.push({
+                "id": getUID(),
+                "user": user,
+                "data": transformedReportDataPerUser,
+                "manDays": userManDays,
+                "groupedReportDataPerUser": groupedReportDataPerUser,
+                "groupedReportDrilldownPerUser": groupedReportDrilldownPerUser
+              })
           });
       this.setState({mxTimeDataByUser: mxTimeDataByUser})
     },
@@ -107,12 +156,18 @@ var UserTables = React.createClass({
     },
     render: function() {
         var chartNodes = this.state.mxTimeDataByUser.map(function(userData) {
+          console.log(userData)
+          var pieKey = userData.id
+          var drilldownKey = userData.id + "drilldown"
           return (
-            <PieChart title={userData.user} data={userData.data} manDays={userData.manDays} key={userData.id} />
+            <div className="user" key={userData.id + "div"}>
+              <PieChart title={userData.user} data={userData.data} manDays={userData.manDays} key={userData.id + "pie"} />
+              <BarChart title={userData.user} seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
+            </div>
           );
         });
         return (
-          <div className="userTables">
+          <div className="users">
             {chartNodes}
           </div>
         );
@@ -125,14 +180,31 @@ var PieChart = React.createClass({
       return {uid: getUID()};
     },
     componentDidMount: function() {
-      drawLineChart(this.state.uid, this.props.title, this.props.data, this.props.manDays);
+      drawPieChart(this.state.uid, this.props.title, this.props.data, this.props.manDays);
     },
     componentWillReceiveProps: function(nextProps) {
-      drawLineChart(this.state.uid, nextProps.title, nextProps.data, nextProps.manDays);
+      drawPieChart(this.state.uid, nextProps.title, nextProps.data, nextProps.manDays);
     },
     render: function() {
       return (
-        <div className="chart" id={this.state.uid} />
+        <div className="pieChart" id={this.state.uid} />
+      );
+    }
+});
+
+var BarChart = React.createClass({
+    getInitialState: function() {
+      return {uid: getUID()};
+    },
+    componentDidMount: function() {
+      drawDrilldownBarChart(this.state.uid, this.props.title, this.props.seriesData, this.props.drilldownData);
+    },
+    componentWillReceiveProps: function(nextProps) {
+      drawDrilldownBarChart(this.state.uid, nextProps.title, nextProps.seriesData, nextProps.drilldownData);
+    },
+    render: function() {
+      return (
+        <div className="barChart" id={this.state.uid} />
       );
     }
 });
@@ -142,7 +214,7 @@ ReactDOM.render(
   document.getElementById('content')
 );
 
-function drawLineChart(parent, title, data, manDays) {
+function drawPieChart(parent, title, data, manDays) {
   $('#'+parent).highcharts({
     chart: {
         plotBackgroundColor: null,
@@ -153,8 +225,11 @@ function drawLineChart(parent, title, data, manDays) {
     title: {
         text: title + ' - Activities: ' + parseInt(manDays) + ' MD'
     },
+    credits: {
+        enabled: false
+    },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}% {point.y} </b>'
+        pointFormat: '{series.name}: <b>{point.percentage:.2f}% {point.y:.2f} </b>'
     },
     series: [{
         name: "MD",
@@ -162,6 +237,47 @@ function drawLineChart(parent, title, data, manDays) {
         data: data
     }]
   });
+}
+
+function drawDrilldownBarChart(parent, title, seriesData, drilldownData) {
+  $('#'+parent).highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'category'
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.2f}'
+                }
+            }
+        },
+        credits: {
+          enabled: false
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+        },
+        series: [{
+            name: 'Projects',
+            colorByPoint: true,
+            data: seriesData,
+        }],
+        drilldown: {
+            series: drilldownData
+        }
+    });
 }
 
 function getUID() {
@@ -198,6 +314,7 @@ function handleFileSelect(evt, callback) {
     reader.onload = function(e) {
         const xmlDoc = $.parseHTML(this.result);
         const reportData = []
+
         // entry[0]  -> username
         // entry[6]  -> activity date
         // entry[8]  -> activity label
