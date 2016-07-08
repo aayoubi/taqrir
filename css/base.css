@@ -38,7 +38,6 @@ h1 {
 }
 
 h2 {
-  border-bottom: 1px solid #eee;
   font-size: 2em;
 }
 
@@ -67,15 +66,25 @@ ul {
 }
 
 .user {
+  display: flex;
+  justify-content: center;
   border-bottom: 1px solid #ddd;
+  height: 250px;
 }
 
-.pieChart {
+.fileSelector {
   display:inline-block;
   margin: 0 auto;
+  width: 100%;
 }
 
-.barChart {
+.label {
+  width:20%;
+  align-self: center;
+}
+
+.pieChart, .barChart {
   display:inline-block;
   margin: 0 auto;
+  width:40%;
 }

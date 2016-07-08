@@ -42,7 +42,9 @@ var FileSelector = React.createClass({
   },
   render: function() {
     return (
+      <div className="fileSelector">
       <input type="file" id="files" onChange={this.onChange}/>
+      </div>
     );
   }
 });
@@ -155,8 +157,9 @@ var UserTables = React.createClass({
           var drilldownKey = userData.id + "drilldown"
           return (
             <div className="user" key={userData.id + "div"}>
-              <PieChart title={userData.user} data={userData.data} manDays={userData.manDays} key={userData.id + "pie"} />
-              <BarChart title={userData.user} seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
+              <Label title={userData.user} manDays={userData.manDays}/>
+              <PieChart data={userData.data} key={userData.id + "pie"} />
+              <BarChart seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
             </div>
           );
         });
@@ -169,15 +172,26 @@ var UserTables = React.createClass({
     }
 });
 
+var Label = React.createClass({
+    render: function() {
+      return (
+        <div className="label">
+          <h3>{this.props.title}</h3>
+          <p>has worked for {this.props.manDays} days!</p>
+        </div>
+      );
+    }
+});
+
 var PieChart = React.createClass({
     getInitialState: function() {
       return {uid: getUID()};
     },
     componentDidMount: function() {
-      drawPieChart(this.state.uid, this.props.title, this.props.data, this.props.manDays);
+      drawPieChart(this.state.uid, this.props.data);
     },
     componentWillReceiveProps: function(nextProps) {
-      drawPieChart(this.state.uid, nextProps.title, nextProps.data, nextProps.manDays);
+      drawPieChart(this.state.uid, nextProps.data);
     },
     render: function() {
       return (
@@ -191,10 +205,10 @@ var BarChart = React.createClass({
       return {uid: getUID()};
     },
     componentDidMount: function() {
-      drawDrilldownBarChart(this.state.uid, this.props.title, this.props.seriesData, this.props.drilldownData);
+      drawDrilldownBarChart(this.state.uid, this.props.seriesData, this.props.drilldownData);
     },
     componentWillReceiveProps: function(nextProps) {
-      drawDrilldownBarChart(this.state.uid, nextProps.title, nextProps.seriesData, nextProps.drilldownData);
+      drawDrilldownBarChart(this.state.uid, nextProps.seriesData, nextProps.drilldownData);
     },
     render: function() {
       return (
@@ -208,7 +222,7 @@ ReactDOM.render(
   document.getElementById('content')
 );
 
-function drawPieChart(parent, title, data, manDays) {
+function drawPieChart(parent, data) {
   $('#'+parent).highcharts({
     chart: {
         plotBackgroundColor: null,
@@ -217,7 +231,7 @@ function drawPieChart(parent, title, data, manDays) {
         type: 'pie'
     },
     title: {
-        text: title + ' - Activities: ' + parseInt(manDays) + ' MD'
+        text: ''
     },
     credits: {
         enabled: false
@@ -233,7 +247,8 @@ function drawPieChart(parent, title, data, manDays) {
   });
 }
 
-function drawDrilldownBarChart(parent, title, seriesData, drilldownData) {
+function drawDrilldownBarChart(parent, seriesData, drilldownData) {
+  // FIXME fix drilldown button position
   $('#'+parent).highcharts({
         chart: {
             type: 'bar'
