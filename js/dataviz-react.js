@@ -12,17 +12,102 @@
 
 var MxTimeTable = React.createClass({
   getInitialState: function() {
-    return {mxTimeData: []};
+    return {
+      mxTimeDataTotal: [],
+      totalManDays: 0,
+      groupedReportData: [],
+      groupedReportDrilldown: [],
+      mxTimeDataByUser: []
+    };
+  },
+  extractMxTimeData: function(data) {
+    var totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
+    var teamReportData = _.chain(data)
+      .groupBy(function(e) { return e.activity; })
+      .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+      .value();
+
+    var groupedReportData = _.chain(data)
+      .groupBy(function(e) { return e.activity.split('-')[0]; })
+      .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+      .value();
+
+    var groupedReportDrilldown = []
+    _.chain(data)
+      .groupBy(function(e) { return e.activity.split('-')[0]; })
+      .each(function(group, key) {
+        var project = { "name": key, "id": key, data: [] }
+        project.data = _.chain(group)
+            .groupBy(function(e) { return e.activity; })
+            .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+            .value()
+        groupedReportDrilldown.push(project)
+      });
+    var mxTimeDataByUser = []
+    _.chain(data)
+      .map(function(e) { return e.user })
+      .uniq()
+      .each(function(user) {
+        var reportDataPerUser = _.chain(data)
+          .filter(function(e) { return e.user === user; })
+          .value()
+
+        var transformedReportDataPerUser = _.chain(reportDataPerUser)
+          .filter(function(e) { return e.user === user; })
+          .groupBy(function(e) { return e.activity; })
+          .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+          .value()
+        var userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
+
+        var groupedReportDataPerUser = _.chain(reportDataPerUser)
+          .groupBy(function(e) { return e.activity.split('-')[0]; })
+          .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+          .value();
+
+        var groupedReportDrilldownPerUser = []
+        _.chain(reportDataPerUser)
+          .groupBy(function(e) { return e.activity.split('-')[0]; })
+          .each(function(group, key) {
+            var project = { "name": key, "id": key, data: [] }
+            project.data = _.chain(group)
+                .groupBy(function(e) { return e.activity; })
+                .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+                .value()
+            groupedReportDrilldownPerUser.push(project)
+          });
+
+        mxTimeDataByUser.push({
+          "id": getUID(),
+          "user": user,
+          "data": transformedReportDataPerUser,
+          "manDays": userManDays,
+          "groupedReportDataPerUser": groupedReportDataPerUser,
+          "groupedReportDrilldownPerUser": groupedReportDrilldownPerUser
+        })
+      });
+
+    this.setState({
+      mxTimeDataTotal: teamReportData,
+      totalManDays: totalManDays,
+      groupedReportData: groupedReportData,
+      groupedReportDrilldown: groupedReportDrilldown,
+      mxTimeDataByUser: mxTimeDataByUser
+    });
   },
   handleFileSelect: function(data) {
-    this.setState({mxTimeData: data});
+    this.extractMxTimeData(data);
   },
   render: function() {
     return (
         <div className="mxTimeTable">
             <FileSelector onFileSelect={this.handleFileSelect} />
-            <TeamTable data={this.state.mxTimeData} />
-            <UserTables data={this.state.mxTimeData} />
+            <TeamTable
+              totalManDays={this.state.totalManDays}
+              mxTimeDataTotal={this.state.mxTimeDataTotal}
+              groupedReportData={this.state.groupedReportData}
+              groupedReportDrilldown={this.state.groupedReportDrilldown}
+            />
+            <UserTables mxTimeDataByUser={this.state.mxTimeDataByUser} />
         </div>
     );
   }
@@ -43,58 +128,22 @@ var FileSelector = React.createClass({
   render: function() {
     return (
       <div className="fileSelector">
-      <input type="file" id="files" onChange={this.onChange}/>
+        <input type="file" id="files" onChange={this.onChange}/>
       </div>
     );
   }
 });
 
 var TeamTable = React.createClass({
-  getInitialState: function() {
-    return {mxTimeDataTotal: [], totalManDays: 0, groupedReportData: [], groupedReportDrilldown: []};
-  },
-  extractData: function(data) {
-    var totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
-    var teamReportData = _.chain(data)
-        .groupBy(function(e) { return e.activity; })
-        .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-        .value();
-
-    var groupedReportData = _.chain(data)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-        .value();
-
-    var groupedReportDrilldown = []
-    _.chain(data)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .each(function(group, key) {
-          var project = { "name": key, "id": key, data: [] }
-          project.data = _.chain(group)
-              .groupBy(function(e) { return e.activity; })
-              .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-              .value()
-          groupedReportDrilldown.push(project)
-        });
-
-    this.setState({
-        mxTimeDataTotal: teamReportData,
-        totalManDays: totalManDays,
-        groupedReportData: groupedReportData,
-        groupedReportDrilldown: groupedReportDrilldown})
-  },
-  componentWillReceiveProps: function(nextProps) {
-    this.extractData(nextProps.data);
-  },
   render: function() {
     var chartNode = (
       <div className="team">
-        <Label title="This team" manDays={this.state.totalManDays} />
-        <PieChart data={this.state.mxTimeDataTotal}/>
-        <BarChart seriesData={this.state.groupedReportData} drilldownData={this.state.groupedReportDrilldown} />
+        <Label title="This team" manDays={this.props.totalManDays} />
+        <PieChart data={this.props.mxTimeDataTotal}/>
+        <DrillDownBarChart seriesData={this.props.groupedReportData} drilldownData={this.props.groupedReportDrilldown} />
       </div>
     );
-    if (this.state.totalManDays === 0)
+    if (this.props.totalManDays === 0)
       return (null);
     else
       return chartNode;
@@ -102,58 +151,8 @@ var TeamTable = React.createClass({
 });
 
 var UserTables = React.createClass({
-    getInitialState: function() {
-      return {mxTimeDataByUser: []};
-    },
-    extractData: function(data) {
-      var mxTimeDataByUser = []
-      _.chain(data)
-          .map(function(e) { return e.user })
-          .uniq()
-          .each(function(user) {
-              var reportDataPerUser = _.chain(data)
-                .filter(function(e) { return e.user === user; })
-                .value()
-
-              var transformedReportDataPerUser = _.chain(reportDataPerUser)
-                .filter(function(e) { return e.user === user; })
-                .groupBy(function(e) { return e.activity; })
-                .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-                .value()
-              var userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
-
-              var groupedReportDataPerUser = _.chain(reportDataPerUser)
-                .groupBy(function(e) { return e.activity.split('-')[0]; })
-                .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-                .value();
-
-              var groupedReportDrilldownPerUser = []
-              _.chain(reportDataPerUser)
-                .groupBy(function(e) { return e.activity.split('-')[0]; })
-                .each(function(group, key) {
-                  var project = { "name": key, "id": key, data: [] }
-                  project.data = _.chain(group)
-                      .groupBy(function(e) { return e.activity; })
-                      .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-                      .value()
-                  groupedReportDrilldownPerUser.push(project)
-                });
-              mxTimeDataByUser.push({
-                "id": getUID(),
-                "user": user,
-                "data": transformedReportDataPerUser,
-                "manDays": userManDays,
-                "groupedReportDataPerUser": groupedReportDataPerUser,
-                "groupedReportDrilldownPerUser": groupedReportDrilldownPerUser
-              })
-          });
-      this.setState({mxTimeDataByUser: mxTimeDataByUser})
-    },
-    componentWillReceiveProps: function(nextProps) {
-      this.extractData(nextProps.data);
-    },
     render: function() {
-        var chartNodes = this.state.mxTimeDataByUser.map(function(userData) {
+        var chartNodes = this.props.mxTimeDataByUser.map(function(userData) {
           var pieKey = userData.id
           var drilldownKey = userData.id + "drilldown"
           var firstName = userData.user.split(',')[1]
@@ -162,7 +161,7 @@ var UserTables = React.createClass({
             <div className="user" key={userData.id + "div"}>
               <Label title={firstName + " " + lastName} manDays={userData.manDays}/>
               <PieChart data={userData.data} key={userData.id + "pie"} />
-              <BarChart seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
+              <DrillDownBarChart seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
             </div>
           );
         });
@@ -204,7 +203,7 @@ var PieChart = React.createClass({
     }
 });
 
-var BarChart = React.createClass({
+var DrillDownBarChart = React.createClass({
     getInitialState: function() {
       return {uid: getUID()};
     },
