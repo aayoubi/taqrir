@@ -89,8 +89,9 @@ var TeamTable = React.createClass({
   render: function() {
     var chartNode = (
       <div className="team">
-        <PieChart title="Team" data={this.state.mxTimeDataTotal} manDays={this.state.totalManDays}/>
-        <BarChart title="Team" seriesData={this.state.groupedReportData} drilldownData={this.state.groupedReportDrilldown} />
+        <Label title="This team" manDays={this.state.totalManDays} />
+        <PieChart data={this.state.mxTimeDataTotal}/>
+        <BarChart seriesData={this.state.groupedReportData} drilldownData={this.state.groupedReportDrilldown} />
       </div>
     );
     if (this.state.totalManDays === 0)
@@ -155,9 +156,11 @@ var UserTables = React.createClass({
         var chartNodes = this.state.mxTimeDataByUser.map(function(userData) {
           var pieKey = userData.id
           var drilldownKey = userData.id + "drilldown"
+          var firstName = userData.user.split(',')[1]
+          var lastName = userData.user.split(',')[0]
           return (
             <div className="user" key={userData.id + "div"}>
-              <Label title={userData.user} manDays={userData.manDays}/>
+              <Label title={firstName + " " + lastName} manDays={userData.manDays}/>
               <PieChart data={userData.data} key={userData.id + "pie"} />
               <BarChart seriesData={userData.groupedReportDataPerUser} drilldownData={userData.groupedReportDrilldownPerUser} key={userData.id + "drilldown"}/>
             </div>
@@ -165,6 +168,7 @@ var UserTables = React.createClass({
         });
         return (
           <div className="users">
+            <h1>Team Members</h1>
             {chartNodes}
           </div>
         );
@@ -177,7 +181,7 @@ var Label = React.createClass({
       return (
         <div className="label">
           <h3>{this.props.title}</h3>
-          <p>has worked for {this.props.manDays} days!</p>
+          <p>spent {this.props.manDays.toFixed(2)} days working.</p>
         </div>
       );
     }
