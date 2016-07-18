@@ -1,6 +1,7 @@
 define(function (require) {
     const React = require('react');
     const Highcharts = require('highcharts')
+    const HighchartsDrilldown = require('highcharts-drilldown')
     const Utilities = require('lib/tools/utilities');
 
     const drawDrilldownBarChart = function(parent, seriesData, drilldownData) {

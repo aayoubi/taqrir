@@ -18,6 +18,7 @@ require.config({
     "jquery": "bower_components/jQuery/dist/jquery.min",
     "underscore": "bower_components/underscore/underscore-min",
     "highcharts": "bower_components/highcharts/highcharts",
+    "highcharts-drilldown": "bower_components/highcharts/modules/drilldown",
     "react": "bower_components/react/react-with-addons",
     "react-dom": "bower_components/react/react-dom.min",
     "babel": "bower_components/requirejs-react-jsx/babel-5.8.34.min",
