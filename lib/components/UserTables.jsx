@@ -1,8 +1,8 @@
 define(function (require) {
     const React = require('react');
-    const Label = require('jsx!lib/Label');
-    const PieChart = require('jsx!lib/PieChart');
-    const DrillDownBarChart = require('jsx!lib/DrillDownBarChart');
+    const Label = require('jsx!lib/components/Label');
+    const PieChart = require('jsx!lib/components/PieChart');
+    const DrillDownBarChart = require('jsx!lib/components/DrillDownBarChart');
     
 	const UserTables = React.createClass({
 	    render: function() {

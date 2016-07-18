@@ -1,6 +1,6 @@
 define(function (require) {
     const React = require('react');
-    const Utilities = require('lib/utilities');
+    const Utilities = require('lib/tools/utilities');
 
     const drawPieChart = function(parent, data) {
       $('#'+parent).highcharts({
