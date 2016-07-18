@@ -1,119 +1,52 @@
 // React Class Hierarchy
 //  - MxTimeTable
 //      - FileSelector
+//      - DateFilter
+//      - DynamicBreakdowns
 //      - TeamTable
 //        - PieChart
-//        - BarChart
+//        - DrillDownBarChart
 //      - UserTables
 //        - User
 //          - PieChart
-//          - BarChart
+//          - DrillDownBarChart
 //        ...
 
-var MxTimeTable = React.createClass({
-  getInitialState: function() {
-    return {
-      mxTimeDataTotal: [],
-      totalManDays: 0,
-      groupedReportData: [],
-      groupedReportDrilldown: [],
-      mxTimeDataByUser: []
-    };
+require.config({
+  baseUrl : '../',
+  paths: {
+    "jquery": "bower_components/jQuery/dist/jquery.min",
+    "underscore": "bower_components/underscore/underscore-min",
+    "highcharts": "bower_components/highcharts/highcharts",
+    "react": "bower_components/react/react-with-addons",
+    "react-dom": "bower_components/react/react-dom.min",
+    "babel": "bower_components/requirejs-react-jsx/babel-5.8.34.min",
+    "jsx": "bower_components/requirejs-react-jsx/jsx",
+    "text": "bower_components/requirejs-text/text"
   },
-  extractMxTimeData: function(data) {
-    var totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
-    var teamReportData = _.chain(data)
-      .groupBy(function(e) { return e.activity; })
-      .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-      .value();
 
-    var groupedReportData = _.chain(data)
-      .groupBy(function(e) { return e.activity.split('-')[0]; })
-      .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-      .value();
-
-    var groupedReportDrilldown = []
-    _.chain(data)
-      .groupBy(function(e) { return e.activity.split('-')[0]; })
-      .each(function(group, key) {
-        var project = { "name": key, "id": key, data: [] }
-        project.data = _.chain(group)
-            .groupBy(function(e) { return e.activity; })
-            .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-            .value()
-        groupedReportDrilldown.push(project)
-      });
-    var mxTimeDataByUser = []
-    _.chain(data)
-      .map(function(e) { return e.user })
-      .uniq()
-      .each(function(user) {
-        var reportDataPerUser = _.chain(data)
-          .filter(function(e) { return e.user === user; })
-          .value()
-
-        var transformedReportDataPerUser = _.chain(reportDataPerUser)
-          .filter(function(e) { return e.user === user; })
-          .groupBy(function(e) { return e.activity; })
-          .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-          .value()
-        var userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
-
-        var groupedReportDataPerUser = _.chain(reportDataPerUser)
-          .groupBy(function(e) { return e.activity.split('-')[0]; })
-          .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-          .value();
-
-        var groupedReportDrilldownPerUser = []
-        _.chain(reportDataPerUser)
-          .groupBy(function(e) { return e.activity.split('-')[0]; })
-          .each(function(group, key) {
-            var project = { "name": key, "id": key, data: [] }
-            project.data = _.chain(group)
-                .groupBy(function(e) { return e.activity; })
-                .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-                .value()
-            groupedReportDrilldownPerUser.push(project)
-          });
-
-        mxTimeDataByUser.push({
-          "id": getUID(),
-          "user": user,
-          "data": transformedReportDataPerUser,
-          "manDays": userManDays,
-          "groupedReportDataPerUser": groupedReportDataPerUser,
-          "groupedReportDrilldownPerUser": groupedReportDrilldownPerUser
-        })
-      });
-
-    this.setState({
-      mxTimeDataTotal: teamReportData,
-      totalManDays: totalManDays,
-      groupedReportData: groupedReportData,
-      groupedReportDrilldown: groupedReportDrilldown,
-      mxTimeDataByUser: mxTimeDataByUser
-    });
+  shim : {
+    "react": {
+      "exports": "React"
+    }
   },
-  handleFileSelect: function(data) {
-    this.extractMxTimeData(data);
-  },
-  render: function() {
-    return (
-        <div className="mxTimeTable">
-            <FileSelector onFileSelect={this.handleFileSelect} />
-            <TeamTable
-              totalManDays={this.state.totalManDays}
-              mxTimeDataTotal={this.state.mxTimeDataTotal}
-              groupedReportData={this.state.groupedReportData}
-              groupedReportDrilldown={this.state.groupedReportDrilldown}
-            />
-            <UserTables mxTimeDataByUser={this.state.mxTimeDataByUser} />
-        </div>
-    );
+
+  config: {
+    babel: {
+      sourceMaps: "inline", // One of [false, 'inline', 'both']. See https://babeljs.io/docs/usage/options/
+      fileExtension: ".jsx" // Can be set to anything, like .es6 or .js. Defaults to .jsx
+    }
   }
 });
 
-var FileSelector = React.createClass({
+require(['jsx!lib/app'], function(App){
+  var app = new App();
+  app.init();
+});
+
+
+/*
+const FileSelector = React.createClass({
   onChange: function(evt) {
     var callback = function(status, data) {
       if (status === 'error') {
@@ -134,7 +67,7 @@ var FileSelector = React.createClass({
   }
 });
 
-var TeamTable = React.createClass({
+const TeamTable = React.createClass({
   render: function() {
     var chartNode = (
       <div className="team">
@@ -150,7 +83,7 @@ var TeamTable = React.createClass({
   }
 });
 
-var UserTables = React.createClass({
+const UserTables = React.createClass({
     render: function() {
         var chartNodes = this.props.mxTimeDataByUser.map(function(userData) {
           var pieKey = userData.id
@@ -175,7 +108,7 @@ var UserTables = React.createClass({
     }
 });
 
-var Label = React.createClass({
+const Label = React.createClass({
     render: function() {
       return (
         <div className="label">
@@ -186,7 +119,7 @@ var Label = React.createClass({
     }
 });
 
-var PieChart = React.createClass({
+const PieChart = React.createClass({
     getInitialState: function() {
       return {uid: getUID()};
     },
@@ -203,7 +136,7 @@ var PieChart = React.createClass({
     }
 });
 
-var DrillDownBarChart = React.createClass({
+const DrillDownBarChart = React.createClass({
     getInitialState: function() {
       return {uid: getUID()};
     },
@@ -349,4 +282,4 @@ function handleFileSelect(evt, callback) {
     const files = evt.target.files; // FileList object
     reader.readAsText(files[0], "UTF-8");
 }
-
+*/
