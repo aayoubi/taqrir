@@ -27,8 +27,16 @@ require.config({
   },
 
   shim : {
-    "react": {
+    react: {
       "exports": "React"
+    },
+    highcharts: {
+      exports: "Highcharts",
+      deps: ["jquery"]
+    },
+    "highcharts-drilldown": {
+      exports: "Highcharts",
+      deps: ["highcharts"]
     }
   },
 

@@ -1,10 +1,10 @@
 define(function (require) {
-    const React = require('react');
-    const FileSelector = require('jsx!lib/FileSelector');
-    const TeamTable = require('jsx!lib/TeamTable');
-    const UserTables = require('jsx!lib/UserTables');
     const _ = require('underscore');
-    const Utilities = require('lib/utilities');
+    const React = require('react');
+    const FileSelector = require('jsx!lib/components/FileSelector');
+    const TeamTable = require('jsx!lib/components/TeamTable');
+    const UserTables = require('jsx!lib/components/UserTables');
+    const Utilities = require('lib/tools/utilities');
 
     const MxTimeTable = React.createClass({
         getInitialState: function() {

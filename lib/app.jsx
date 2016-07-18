@@ -2,7 +2,7 @@ define(function(require){
 
   const React = require('react');
   const ReactDOM = require('react-dom');
-  const ActivityTable = require('jsx!lib/ActivityTable');
+  const ActivityTable = require('jsx!lib/components/ActivityTable');
 
   function App() {
     this.testThing = ActivityTable;
@@ -21,5 +21,4 @@ define(function(require){
   };
 
   return App;
-
 });
