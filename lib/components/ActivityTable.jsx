@@ -11,24 +11,23 @@ define(function (require) {
           return {
             mxTimeDataTotal: [],
             totalManDays: 0,
-            groupedReportData: [],
-            groupedReportDrilldown: [],
+            drilldownDataPerTeam: {},
             mxTimeDataByUser: []
           };
         },
         extractMxTimeData: function(data) {
-          var totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
-          var teamReportData = _.chain(data)
+          const totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
+          const teamReportData = _.chain(data)
             .groupBy(function(e) { return e.activity; })
             .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
             .value();
 
-          var groupedReportData = _.chain(data)
+          const groupedReportData = _.chain(data)
             .groupBy(function(e) { return e.activity.split('-')[0]; })
             .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
             .value();
 
-          var groupedReportDrilldown = []
+          const groupedReportDrilldown = []
           _.chain(data)
             .groupBy(function(e) { return e.activity.split('-')[0]; })
             .each(function(group, key) {
@@ -39,28 +38,34 @@ define(function (require) {
                   .value()
               groupedReportDrilldown.push(project)
             });
-          var mxTimeDataByUser = []
+
+          const drilldownDataPerTeam = {
+            "seriesData": groupedReportData,
+            "drilldownData": groupedReportDrilldown
+          }
+
+          const mxTimeDataByUser = []
           _.chain(data)
             .map(function(e) { return e.user })
             .uniq()
             .each(function(user) {
-              var reportDataPerUser = _.chain(data)
+              const reportDataPerUser = _.chain(data)
                 .filter(function(e) { return e.user === user; })
                 .value()
 
-              var transformedReportDataPerUser = _.chain(reportDataPerUser)
+              const transformedReportDataPerUser = _.chain(reportDataPerUser)
                 .filter(function(e) { return e.user === user; })
                 .groupBy(function(e) { return e.activity; })
                 .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
                 .value()
-              var userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
+              const userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
 
-              var groupedReportDataPerUser = _.chain(reportDataPerUser)
+              const groupedReportDrilldownPerUser = []
+              const groupedReportDataPerUser = _.chain(reportDataPerUser)
                 .groupBy(function(e) { return e.activity.split('-')[0]; })
                 .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
                 .value();
 
-              var groupedReportDrilldownPerUser = []
               _.chain(reportDataPerUser)
                 .groupBy(function(e) { return e.activity.split('-')[0]; })
                 .each(function(group, key) {
@@ -72,21 +77,24 @@ define(function (require) {
                   groupedReportDrilldownPerUser.push(project)
                 });
 
+              const drilldownDataPerUser= {
+                "seriesData":groupedReportDataPerUser,
+                "drilldownData": groupedReportDrilldownPerUser
+              };
+
               mxTimeDataByUser.push({
                 "id": Utilities.getUID(),
                 "user": user,
                 "data": transformedReportDataPerUser,
                 "manDays": userManDays,
-                "groupedReportDataPerUser": groupedReportDataPerUser,
-                "groupedReportDrilldownPerUser": groupedReportDrilldownPerUser
+                "drilldownDataPerUser": drilldownDataPerUser
               })
             });
 
           this.setState({
             mxTimeDataTotal: teamReportData,
             totalManDays: totalManDays,
-            groupedReportData: groupedReportData,
-            groupedReportDrilldown: groupedReportDrilldown,
+            drilldownDataPerTeam: drilldownDataPerTeam,
             mxTimeDataByUser: mxTimeDataByUser
           });
         },
@@ -100,8 +108,7 @@ define(function (require) {
                   <TeamTable
                     totalManDays={this.state.totalManDays}
                     mxTimeDataTotal={this.state.mxTimeDataTotal}
-                    groupedReportData={this.state.groupedReportData}
-                    groupedReportDrilldown={this.state.groupedReportDrilldown}
+                    drilldownDataPerTeam={this.state.drilldownDataPerTeam}
                   />
                   <UserTables mxTimeDataByUser={this.state.mxTimeDataByUser} />
               </div>
@@ -110,6 +117,3 @@ define(function (require) {
     });
     return MxTimeTable;
 });
-
-
-

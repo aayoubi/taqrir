@@ -5,11 +5,12 @@ define(function (require) {
     const DrillDownBarChart = require('jsx!lib/components/DrillDownBarChart');
     const TeamTable = React.createClass({
       render: function() {
+        console.log(this.props)
         var chartNode = (
           <div className="team">
             <Label title="This team" manDays={this.props.totalManDays} />
             <PieChart data={this.props.mxTimeDataTotal}/>
-            <DrillDownBarChart seriesData={this.props.groupedReportData} drilldownData={this.props.groupedReportDrilldown} />
+            <DrillDownBarChart seriesData={this.props.drilldownDataPerTeam.seriesData} drilldownData={this.props.drilldownDataPerTeam.drilldownData} />
           </div>
         );
         if (this.props.totalManDays === 0)
