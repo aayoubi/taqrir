@@ -11,7 +11,6 @@ define(function (require) {
 	          var drilldownKey = userData.id + "drilldown"
 	          var firstName = userData.user.split(',')[1]
 	          var lastName = userData.user.split(',')[0]
-	          console.log(userData)
 	          return (
 	            <div className="user" key={userData.id + "div"}>
 	              <Label title={firstName + " " + lastName} manDays={userData.manDays}/>

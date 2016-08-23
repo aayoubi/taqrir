@@ -4,6 +4,7 @@ define(function (require) {
     const FileSelector = require('jsx!lib/components/FileSelector');
     const TeamTable = require('jsx!lib/components/TeamTable');
     const UserTables = require('jsx!lib/components/UserTables');
+    const Breakdown = require('jsx!lib/components/Breakdown');
     const Utilities = require('lib/tools/utilities');
 
     const MxTimeTable = React.createClass({
@@ -12,7 +13,8 @@ define(function (require) {
             mxTimeDataTotal: [],
             totalManDays: 0,
             drilldownDataPerTeam: {},
-            mxTimeDataByUser: []
+            mxTimeDataByUser: [],
+            breakdowns: []
           };
         },
         extractMxTimeData: function(data) {
@@ -21,6 +23,14 @@ define(function (require) {
             .groupBy(function(e) { return e.activity; })
             .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
             .value();
+
+          const breakdowns = _.chain(data)
+            .groupBy(function(e) { return e.activity.split('-')[0]; })
+            .map(function(group, key) {
+              const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value()
+              return { key: key, items: items}
+            })
+            .value()
 
           const groupedReportData = _.chain(data)
             .groupBy(function(e) { return e.activity.split('-')[0]; })
@@ -95,7 +105,8 @@ define(function (require) {
             mxTimeDataTotal: teamReportData,
             totalManDays: totalManDays,
             drilldownDataPerTeam: drilldownDataPerTeam,
-            mxTimeDataByUser: mxTimeDataByUser
+            mxTimeDataByUser: mxTimeDataByUser,
+            breakdowns: breakdowns
           });
         },
         handleFileSelect: function(data) {
@@ -105,6 +116,7 @@ define(function (require) {
           return (
               <div className="mxTimeTable">
                   <FileSelector onFileSelect={this.handleFileSelect} />
+                  <Breakdown groups={this.state.breakdowns}/>
                   <TeamTable
                     totalManDays={this.state.totalManDays}
                     mxTimeDataTotal={this.state.mxTimeDataTotal}

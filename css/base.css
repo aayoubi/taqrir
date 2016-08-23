@@ -72,7 +72,7 @@ ul {
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ddd;
-  height: 250px;
+  height: 300px;
 }
 
 .fileSelector {
@@ -90,4 +90,9 @@ ul {
   display:inline-block;
   margin: 0 auto;
   width:40%;
+}
+
+.breakdownGroup {
+  border-style: dotted;
+  border-width: 1px;
 }

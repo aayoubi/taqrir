@@ -5,7 +5,6 @@ define(function (require) {
     const DrillDownBarChart = require('jsx!lib/components/DrillDownBarChart');
     const TeamTable = React.createClass({
       render: function() {
-        console.log(this.props)
         var chartNode = (
           <div className="team">
             <Label title="This team" manDays={this.props.totalManDays} />
