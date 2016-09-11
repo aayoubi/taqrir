@@ -22,12 +22,18 @@ class UserTables extends React.Component {
         </div>
       );
     });
-    return (
-      <div className="users">
-        <h1>Team Members</h1>
-        {chartNodes}
-      </div>
-    );
+    if(chartNodes.length == 0) {
+      return (
+        <div className="users" />
+      );
+    } else {
+      return (
+        <div className="users">
+          <h1>Team Members</h1>
+          {chartNodes}
+        </div>
+      );
+    }
   }
 }
 
