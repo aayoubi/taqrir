@@ -3,32 +3,31 @@ import $ from 'jquery';
 import Highcharts from 'highcharts';
 window.Highcharts = Highcharts;
 
-
 import {getUID} from '../../tools/utilities.js';
 
 function drawPieChart(parent, data) {
-  $('#'+parent).highcharts({
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: ''
-    },
-    credits: {
-        enabled: false
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.2f}% {point.y:.2f} </b>'
-    },
-    series: [{
-        name: "MD",
-        colorByPoint: true,
-        data: data
-    }]
-  });
+    Highcharts.chart(parent, {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.2f}% {point.y:.2f} </b>'
+        },
+        series: [{
+            name: "MD",
+            colorByPoint: true,
+            data: data
+        }]
+    });
 }
 
 

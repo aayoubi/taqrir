@@ -3,14 +3,12 @@ import $ from 'jquery';
 import Highcharts from 'highcharts';
 // https://github.com/highcharts/highcharts/issues/4994
 window.Highcharts = Highcharts;
-require('highcharts/modules/exporting')(Highcharts);
 require('highcharts/modules/drilldown')(Highcharts);
 
 import {getUID} from '../../tools/utilities.js';
 
 function drawDrilldownBarChart(parent, seriesData, drilldownData) {
-  // FIXME fix drilldown button position
-  $('#'+parent).highcharts({
+    Highcharts.chart(parent, {
         chart: {
             type: 'bar'
         },
