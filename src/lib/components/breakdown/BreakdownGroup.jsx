@@ -17,6 +17,7 @@ export default class BreakdownGroup extends React.Component {
         console.log('item created', newItems);
     }
     render() {
+        // TODO the group title should be editable
         return (
           <div className="breakdownGroup">
                 <div className="breakdownGroup-header">
