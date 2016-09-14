@@ -24,7 +24,7 @@ class UserTables extends React.Component {
     });
     if(chartNodes.length == 0) {
       return (
-        <div className="users" />
+        <div className="users"/>
       );
     } else {
       return (

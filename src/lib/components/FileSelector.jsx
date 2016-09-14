@@ -71,9 +71,14 @@ class FileSelector extends React.Component {
   }
 
   render() {
+    var btnStyle = {
+      display: 'none'
+    }
     return (
       <div className="fileSelector">
-        <input type="file" id="files" onChange={this.onChange}/>
+        <label className="btn btn-default btn-file">
+            Browse <input type="file" id="files" onChange={this.onChange} style={btnStyle}/>
+        </label>
       </div>
     );
   }

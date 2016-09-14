@@ -5,9 +5,10 @@ import {getUID} from '../tools/utilities.js';
 import FileSelector from './FileSelector.jsx';
 import TeamTable from './TeamTable.jsx';
 import UserTables from './UserTables.jsx';
+import Breakdown from './breakdown/Breakdown.jsx';
 
 
-class ActivityTable extends React.Component {
+export default class ActivityTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,6 +35,8 @@ class ActivityTable extends React.Component {
           return { key: key, items: items}
         })
         .value()
+
+      console.log(breakdowns);
 
       const groupedReportData = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
@@ -118,10 +121,11 @@ class ActivityTable extends React.Component {
     }
 
     render() {
-              // <Breakdown groups={this.state.breakdowns}/>
       return (
           <div className="mxTimeTable">
               <FileSelector onFileSelect={this.handleFileSelect} />
+              <hr/>
+              <Breakdown groups={this.state.breakdowns} />
               <TeamTable
                 totalManDays={this.state.totalManDays}
                 mxTimeDataTotal={this.state.mxTimeDataTotal}
@@ -132,5 +136,3 @@ class ActivityTable extends React.Component {
       );
     }
 }
-
-export default ActivityTable;

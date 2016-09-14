@@ -1,15 +1,12 @@
-define(function (require) {
-    const React = require('react');
+import React, { PropTypes } from 'react';
 
-	const BreakdownItem = React.createClass({
-	    render: function() {
-	        return (
-	          <div className="breakdownItem">
-	          	<span>{this.props.label}</span>
-	          </div>
-	        );
-	    }
-	});
-
-	return BreakdownItem;
-});
+export default class BreakdownItem extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <li><span className="label label-primary">{this.props.label}</span></li>
+        );
+    }
+}

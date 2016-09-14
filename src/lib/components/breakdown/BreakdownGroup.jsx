@@ -1,29 +1,30 @@
-define(function (require) {
-    const React = require('react');
-    const BreakdownItems = require('jsx!lib/components/BreakdownItems');
-    const BreakdownItemsForm = require('jsx!lib/components/BreakdownItemsForm');
+import React, { PropTypes } from 'react';
 
-	const BreakdownGroup = React.createClass({
-		getInitialState: function() {
-			return {
-				items:[]
-			}
-		},
-		handleSubmitCallback: function(item) {
-			const newItems = this.state.items;
-			newItems.push(item.label)
-			this.setState({items: newItems});
-			console.log('item created', newItems);
-		},
-	    render: function() {
-	        return (
-	          <div className="breakdownGroup">
-	          	<h3>{this.props.name}</h3>
-	          	<BreakdownItems items={this.props.items}/>
-	          </div>
-	        );
-	    }
-	});
+import BreakdownItems from './BreakdownItems.jsx';
+import BreakdownGroupForm from './BreakdownGroupForm.jsx';
 
-	return BreakdownGroup;
-});
+export default class BreakdownGroup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items:[]
+        }
+    }
+    handleSubmitCallback(item) {
+        const newItems = this.state.items;
+        newItems.push(item.label)
+        this.setState({items: newItems});
+        console.log('item created', newItems);
+    }
+    render() {
+        return (
+          <div className="breakdownGroup">
+                <div className="breakdownGroup-header">
+                    <h5>{this.props.name}</h5>
+                    <hr/>
+                </div>
+                <BreakdownItems items={this.props.items}/>
+          </div>
+        );
+    }
+}

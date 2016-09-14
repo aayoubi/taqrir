@@ -57,28 +57,21 @@ ul {
   padding-left: 30px;
 }
 
+.fileSelector {
+  width: 100px ;
+  margin: 0 auto ;
+}
+
 .team {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #ddd;
   height: 400px;
-}
-
-.users {
-  border-bottom: 1px solid #ddd;
 }
 
 .user {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #ddd;
   height: 300px;
-}
-
-.fileSelector {
-  display:inline-block;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .desc {
@@ -92,7 +85,39 @@ ul {
   width:40%;
 }
 
+.containers {
+  display: flex;
+}
+
 .breakdownGroup {
-  border-style: dotted;
-  border-width: 1px;
+  float: left;
+  width: 150px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #E2E4E6;
+}
+
+.breakdownGroup .breakdownGroup-header {
+  font-weight: bold;
+  color: #4d4d4d;
+}
+
+.breakdownGroup .breakdownGroup-header h5 {
+  margin: 0;
+  text-align: center;
+  display: inline;
+}
+
+.breakdownGroup .breakdownGroup-header hr {
+  color: #999;
+  margin: 0;
+}
+
+.breakdownGroup .breakdownGroup-body {
+  padding-bottom: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+.breakdownGroup .breakdownGroup-body li {
 }

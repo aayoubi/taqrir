@@ -10,7 +10,7 @@ class TeamTable extends React.Component {
   render() {
     var chartNode = (
       <div className="team">
-        <Label title="This team" manDays={this.props.totalManDays} />
+        <Label title="This team ♘" manDays={this.props.totalManDays} />
         <PieChart data={this.props.mxTimeDataTotal}/>
         <DrillDownBarChart seriesData={this.props.drilldownDataPerTeam.seriesData} drilldownData={this.props.drilldownDataPerTeam.drilldownData} />
       </div>
