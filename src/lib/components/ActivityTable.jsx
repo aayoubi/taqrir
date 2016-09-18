@@ -16,7 +16,7 @@ export default class ActivityTable extends React.Component {
             totalManDays: 0,
             drilldownDataPerTeam: {},
             mxTimeDataByUser: [],
-            breakdowns: []
+            breakdowns: {}
         }
         this.handleFileSelect = this.handleFileSelect.bind(this);
     }
@@ -28,7 +28,7 @@ export default class ActivityTable extends React.Component {
         .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
         .value();
 
-      const breakdowns = _.chain(data)
+      const breakdownsRaw = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
         .map(function(group, key) {
           const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value()
@@ -36,6 +36,11 @@ export default class ActivityTable extends React.Component {
         })
         .value()
 
+      console.log(breakdownsRaw);
+      const breakdowns = {}
+      breakdownsRaw.forEach(function (breakdown) {
+        breakdowns[breakdown.key] = breakdown.items
+      })
       console.log(breakdowns);
 
       const groupedReportData = _.chain(data)
