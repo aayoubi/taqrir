@@ -10,6 +10,7 @@ export default class BreakdownGroup extends React.Component {
         super(props);
         this.state = {
             label: props.label,
+            /* items: [ {key: '', label: '', group: ''} ] */
             items: []
         }
         this.moveItemRandomly = this.moveItemRandomly.bind(this);
@@ -20,50 +21,64 @@ export default class BreakdownGroup extends React.Component {
         this.buildItemsList(this.props.items);
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         console.log(this.state.label + " received new props, updating items");
         this.buildItemsList(newProps.items);
     }
 
     moveItemRandomly(item) {
+        console.log('--- group move ---')
         console.log(item);
-        console.log("moving randomly")
         console.log(this);
-        this.props.moveItemRandomly(item, this.state.label);
-    }
-
-    removeItem() {
-
-    }
-
-    addItem() {
-
+        console.log("moving randomly")
+        const itemsUpdated = this.state.items;
+        for(var i = 0; i < itemsUpdated.length; i++) {
+            if(itemsUpdated[i].key === item.id) {
+                itemsUpdated.splice(i, 1);
+                this.setState({items: itemsUpdated})
+            }
+        }
+        console.log('--- group move ---')
+        // this.props.moveItemRandomly(item, this.state.label);
     }
 
     buildItemsList(items) {
         const itemComponents = [];
         for(var i = 0 ; i < items.length ; i++) {
-            itemComponents.push(
-                    <BreakdownItem 
-                        key={getUID()}
-                        label={items[i]}
-                        group={this.state.label}
-                        moveItemRandomly={this.moveItemRandomly} />
+            const key = getUID();
+            itemComponents.push({
+                        key: key,
+                        label: items[i],
+                        group: this.state.label
+                    }
                 );
         }
         this.setState({items: itemComponents});
     }
 
+    renderItems(items) {
+        return items.map(function(item) {
+            return (
+                    <BreakdownItem
+                        key={item.key}
+                        id={item.key}
+                        label={item.label}
+                        group={item.group}
+                        moveItemRandomly={this.moveItemRandomly}
+                    />
+                )
+        }, this);
+    }
+
     render() {
         // TODO the group title should be editable
-        console.log(this.state.items);
         return (
           <div className="breakdownGroup">
                 <div className="breakdownGroup-header">
                     <h5>{this.props.label}</h5>
                     <hr/>
                     <ul className="breakdownGroup-body">
-                        {this.state.items}
+                        {this.renderItems(this.state.items)}
                     </ul>
                 </div>
           </div>

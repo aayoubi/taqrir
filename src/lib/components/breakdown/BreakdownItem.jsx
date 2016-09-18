@@ -5,6 +5,7 @@ export default class BreakdownItem extends React.Component {
         super(props);
         this.clickEvent = this.clickEvent.bind(this);
         this.state = {
+        	id: props.id,
         	label: props.label,
         	group: props.group
         }
@@ -13,7 +14,8 @@ export default class BreakdownItem extends React.Component {
     
     clickEvent() {
     	console.log("clicked on " + this.state.label);
-    	this.props.moveItemRandomly(this);
+    	// FIXME should we pass in the whole state here ??
+    	this.props.moveItemRandomly(this.state);
     }
 
     render() {
