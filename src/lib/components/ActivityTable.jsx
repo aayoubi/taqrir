@@ -11,7 +11,7 @@ export default class ActivityTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataPerTeam: [],
+            dataGlobal: {},
             dataPerUser: [],
             breakdowns: {}
         }
@@ -21,7 +21,7 @@ export default class ActivityTable extends React.Component {
     extractCustomData (data) {
       const slicedData = cutAndSlice(data);
       this.setState({
-        dataPerTeam: slicedData.dataPerTeam,
+        dataGlobal: slicedData.dataGlobal,
         dataPerUser: slicedData.dataPerUser,
         breakdowns: slicedData.breakdowns
       });
@@ -37,7 +37,7 @@ export default class ActivityTable extends React.Component {
               <FileSelector onFileSelect={this.handleFileSelect} />
               <hr/>
               <Breakdown groups={this.state.breakdowns} />
-              <TeamTable dataPerTeam={this.state.dataPerTeam} />
+              <TeamTable dataGlobal={this.state.dataGlobal} />
               <UserTables dataPerUser={this.state.dataPerUser} />
           </div>
       );

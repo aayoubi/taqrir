@@ -52,60 +52,18 @@ export function handleFileSelect(evt, callback) {
 }
 
 function extractTeamData(data) {
-
-}
-
-function retrieveBreakdownData(data) {
-  const highchartsData = _.chain(data)
-    .groupBy(function(e) { return e.activity.split('-')[0]; })
-    .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-    .value();
-
-  const highchartsDrilldownData = [];
-  _.chain(data)
-    .groupBy(function(e) { return e.activity.split('-')[0]; })
-    .each(function(group, key) {
-      var project = { "name": key, "id": key, data: [] };
-      project.data = _.chain(group)
-          .groupBy(function(e) { return e.activity; })
-          .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-          .value();
-      highchartsDrilldownData.push(project);
-    });
-
-    return {
-        "seriesData": highchartsData,
-        "drilldownData": highchartsDrilldownData
-    }
-}
-
-export function cutAndSlice(data) {
-    const dataPerTeam = {}
+    const dataPerTeam = {};
+    dataPerTeam.id = getUID();
     dataPerTeam.md = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
     dataPerTeam.chart = _.chain(data)
         .groupBy(function(e) { return e.activity; })
         .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
         .value();
-
-    // breakdown here
     dataPerTeam.drilldown = retrieveBreakdownData(data);
-    console.log(dataPerTeam);
+    return dataPerTeam;
+}
 
-    const breakdownsRaw = _.chain(data)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .map(function(group, key) {
-            const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value();
-            return { key: key, items: items };
-        })
-        .value();
-
-    console.log(breakdownsRaw);
-    const breakdowns = {};
-        breakdownsRaw.forEach(function (breakdown) {
-        breakdowns[breakdown.key] = breakdown.items;
-    });
-    console.log(breakdowns);
-
+function extractUserData(data) {
     const dataPerUser = [];
     _.chain(data)
         .map(function(e) { return e.user; })
@@ -149,9 +107,52 @@ export function cutAndSlice(data) {
                 "drilldown": drilldownDataPerUser
             });
         });
+    return dataPerUser;
+}
+
+function retrieveBreakdownData(data) {
+    const highchartsData = _.chain(data)
+        .groupBy(function(e) { return e.activity.split('-')[0]; })
+        .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .value();
+
+    const highchartsDrilldownData = [];
+    _.chain(data)
+        .groupBy(function(e) { return e.activity.split('-')[0]; })
+        .each(function(group, key) {
+            var project = { "name": key, "id": key, data: [] };
+            project.data = _.chain(group)
+                .groupBy(function(e) { return e.activity; })
+                .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+                .value();
+            highchartsDrilldownData.push(project);
+        });
 
     return {
-        dataPerTeam: dataPerTeam,
+        "seriesData": highchartsData,
+        "drilldownData": highchartsDrilldownData
+    };
+}
+
+export function cutAndSlice(data) {
+    const dataPerTeam = extractTeamData(data);
+    const dataPerUser = extractUserData(data);
+
+    const breakdownsRaw = _.chain(data)
+        .groupBy(function(e) { return e.activity.split('-')[0]; })
+        .map(function(group, key) {
+            const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value();
+            return { key: key, items: items };
+        })
+        .value();
+
+    const breakdowns = {};
+        breakdownsRaw.forEach(function (breakdown) {
+        breakdowns[breakdown.key] = breakdown.items;
+    });
+
+    return {
+        dataGlobal: dataPerTeam,
         dataPerUser: dataPerUser,
         breakdowns: breakdowns
     };

@@ -8,12 +8,14 @@ class TeamTable extends React.Component {
     super(props);
   }
   render() {
-    if(this.props.dataPerTeam.length > 0) {
+    if(this.props.dataGlobal.chart !== undefined) {
       var chartNode = (
         <div className="team">
-          <Label title="This team ♘" manDays={this.props.dataPerTeam.md} />
-          <PieChart data={this.props.dataPerTeam.chart}/>
-          <DrillDownBarChart seriesData={this.props.dataPerTeam.drilldown.seriesData} drilldownData={this.props.dataPerTeam.drilldown.drilldownData} />
+          <Label title="This team ♘" manDays={this.props.dataGlobal.md} />
+          <PieChart data={this.props.dataGlobal.chart}/>
+          <DrillDownBarChart 
+            seriesData={this.props.dataGlobal.drilldown.seriesData} 
+            drilldownData={this.props.dataGlobal.drilldown.drilldownData} />
         </div>
       );
       return chartNode;
