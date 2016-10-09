@@ -51,34 +51,17 @@ export function handleFileSelect(evt, callback) {
   reader.readAsText(files[0], "UTF-8");
 }
 
-export function cutAndSlice(data) {
-  const totalManDays = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
-  const teamReportData = _.chain(data)
-    .groupBy(function(e) { return e.activity; })
-    .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-    .value();
+function extractTeamData(data) {
 
-  const breakdownsRaw = _.chain(data)
-    .groupBy(function(e) { return e.activity.split('-')[0]; })
-    .map(function(group, key) {
-      const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value();
-      return { key: key, items: items };
-    })
-    .value();
+}
 
-  console.log(breakdownsRaw);
-  const breakdowns = {};
-  breakdownsRaw.forEach(function (breakdown) {
-    breakdowns[breakdown.key] = breakdown.items;
-  });
-  console.log(breakdowns);
-
-  const groupedReportData = _.chain(data)
+function retrieveBreakdownData(data) {
+  const highchartsData = _.chain(data)
     .groupBy(function(e) { return e.activity.split('-')[0]; })
     .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
     .value();
 
-  const groupedReportDrilldown = [];
+  const highchartsDrilldownData = [];
   _.chain(data)
     .groupBy(function(e) { return e.activity.split('-')[0]; })
     .each(function(group, key) {
@@ -87,66 +70,89 @@ export function cutAndSlice(data) {
           .groupBy(function(e) { return e.activity; })
           .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
           .value();
-      groupedReportDrilldown.push(project);
+      highchartsDrilldownData.push(project);
     });
 
-  const drilldownDataPerTeam = {
-    "seriesData": groupedReportData,
-    "drilldownData": groupedReportDrilldown
-  };
+    return {
+        "seriesData": highchartsData,
+        "drilldownData": highchartsDrilldownData
+    }
+}
 
-  const mxTimeDataByUser = [];
-  _.chain(data)
-    .map(function(e) { return e.user; })
-    .uniq()
-    .each(function(user) {
-      const reportDataPerUser = _.chain(data)
-        .filter(function(e) { return e.user === user; })
-        .value();
-
-      const transformedReportDataPerUser = _.chain(reportDataPerUser)
-        .filter(function(e) { return e.user === user; })
+export function cutAndSlice(data) {
+    const dataPerTeam = {}
+    dataPerTeam.md = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
+    dataPerTeam.chart = _.chain(data)
         .groupBy(function(e) { return e.activity; })
         .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
         .value();
-      const userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
 
-      const groupedReportDrilldownPerUser = [];
-      const groupedReportDataPerUser = _.chain(reportDataPerUser)
+    // breakdown here
+    dataPerTeam.drilldown = retrieveBreakdownData(data);
+    console.log(dataPerTeam);
+
+    const breakdownsRaw = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .map(function(group, key) {
+            const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value();
+            return { key: key, items: items };
+        })
         .value();
 
-      _.chain(reportDataPerUser)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .each(function(group, key) {
-          var project = { "name": key, "id": key, data: [] };
-          project.data = _.chain(group)
-              .groupBy(function(e) { return e.activity; })
-              .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-              .value();
-          groupedReportDrilldownPerUser.push(project);
+    console.log(breakdownsRaw);
+    const breakdowns = {};
+        breakdownsRaw.forEach(function (breakdown) {
+        breakdowns[breakdown.key] = breakdown.items;
+    });
+    console.log(breakdowns);
+
+    const dataPerUser = [];
+    _.chain(data)
+        .map(function(e) { return e.user; })
+        .uniq()
+        .each(function(user) {
+            const rawDataPerUser = _.chain(data)
+            .filter(function(e) { return e.user === user; })
+            .value();
+
+            const transformedReportDataPerUser = _.chain(rawDataPerUser)
+                .filter(function(e) { return e.user === user; })
+                .groupBy(function(e) { return e.activity; })
+                .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+                .value();
+            const userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
+
+            const groupedReportDrilldownPerUser = [];
+            const groupedReportDataPerUser = _.chain(rawDataPerUser)
+                .groupBy(function(e) { return e.activity.split('-')[0]; })
+                .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+                .value();
+
+            _.chain(rawDataPerUser)
+                .groupBy(function(e) { return e.activity.split('-')[0]; })
+                .each(function(group, key) {
+                    var project = { "name": key, "id": key, data: [] };
+                    project.data = _.chain(group)
+                        .groupBy(function(e) { return e.activity; })
+                        .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+                        .value();
+                        groupedReportDrilldownPerUser.push(project);
+                });
+
+            const drilldownDataPerUser = retrieveBreakdownData(rawDataPerUser);
+
+            dataPerUser.push({
+                "id": getUID(),
+                "user": user,
+                "chart": transformedReportDataPerUser,
+                "md": userManDays,
+                "drilldown": drilldownDataPerUser
+            });
         });
 
-      const drilldownDataPerUser= {
-        "seriesData":groupedReportDataPerUser,
-        "drilldownData": groupedReportDrilldownPerUser
-      };
-
-      mxTimeDataByUser.push({
-        "id": getUID(),
-        "user": user,
-        "data": transformedReportDataPerUser,
-        "manDays": userManDays,
-        "drilldownDataPerUser": drilldownDataPerUser
-      });
-    });
-
-  return {
-    mxTimeDataTotal: teamReportData,
-    totalManDays: totalManDays,
-    drilldownDataPerTeam: drilldownDataPerTeam,
-    mxTimeDataByUser: mxTimeDataByUser,
-    breakdowns: breakdowns
-  };
+    return {
+        dataPerTeam: dataPerTeam,
+        dataPerUser: dataPerUser,
+        breakdowns: breakdowns
+    };
 }

@@ -11,29 +11,24 @@ export default class ActivityTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mxTimeDataTotal: [],
-            totalManDays: 0,
-            drilldownDataPerTeam: {},
-            mxTimeDataByUser: [],
+            dataPerTeam: [],
+            dataPerUser: [],
             breakdowns: {}
         }
         this.handleFileSelect = this.handleFileSelect.bind(this);
     }
 
-    extractMxTimeData (data) {
+    extractCustomData (data) {
       const slicedData = cutAndSlice(data);
-
       this.setState({
-        mxTimeDataTotal: slicedData.mxTimeDataTotal,
-        totalManDays: slicedData.totalManDays,
-        drilldownDataPerTeam: slicedData.drilldownDataPerTeam,
-        mxTimeDataByUser: slicedData.mxTimeDataByUser,
+        dataPerTeam: slicedData.dataPerTeam,
+        dataPerUser: slicedData.dataPerUser,
         breakdowns: slicedData.breakdowns
       });
     }
 
     handleFileSelect(data) {
-      this.extractMxTimeData(data);
+      this.extractCustomData(data);
     }
 
     render() {  
@@ -42,12 +37,8 @@ export default class ActivityTable extends React.Component {
               <FileSelector onFileSelect={this.handleFileSelect} />
               <hr/>
               <Breakdown groups={this.state.breakdowns} />
-              <TeamTable
-                totalManDays={this.state.totalManDays}
-                mxTimeDataTotal={this.state.mxTimeDataTotal}
-                drilldownDataPerTeam={this.state.drilldownDataPerTeam}
-              />
-              <UserTables mxTimeDataByUser={this.state.mxTimeDataByUser} />
+              <TeamTable dataPerTeam={this.state.dataPerTeam} />
+              <UserTables dataPerUser={this.state.dataPerUser} />
           </div>
       );
     }
