@@ -28,9 +28,9 @@ export default class ActivityTable extends React.Component {
       });
     }
 
-    onBreakdownChange(breakdowns) {
-      currentState = this.state ;
-      currentState.breakdowns = breakdowns;
+    onBreakdownChange(groups) {
+      const currentState = this.state ;
+      currentState.breakdowns = groups;
       this.setState(currentState);
     }
 

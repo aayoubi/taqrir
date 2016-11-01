@@ -9,37 +9,25 @@ export default class BreakdownGroup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            label: props.label,
-            /* items: [ {key: '', label: '', group: ''} ] */
+            id: props.id,
+            name: props.name,
             items: []
         }
         this.moveItemRandomly = this.moveItemRandomly.bind(this);
     }
 
     componentDidMount() {
-        console.log(this.state.label + " is mounting, updating items");
         this.buildItemsList(this.props.items);
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(this.state.label + " received new props, updating items");
         this.buildItemsList(newProps.items);
     }
 
     moveItemRandomly(item) {
         console.log('--- clicked on ---' + item)
-        console.log(item);
-        console.log(this);
-        console.log("removing item")
-        const itemsUpdated = this.state.items;
-        for(var i = 0; i < itemsUpdated.length; i++) {
-            if(itemsUpdated[i].key === item.id) {
-                itemsUpdated.splice(i, 1);
-                this.setState({items: itemsUpdated})
-            }
-        }
-        // console.log('--- group move ---')
-        // this.props.moveItemRandomly(item, this.state.label);
+        // FIXME should we pass the whole state here as well ???
+        this.props.moveItemRandomly(item, this.state.name);
     }
 
     buildItemsList(items) {
@@ -47,11 +35,10 @@ export default class BreakdownGroup extends React.Component {
         for(var i = 0 ; i < items.length ; i++) {
             const key = getUID();
             itemComponents.push({
-                        key: key,
-                        label: items[i],
-                        group: this.state.label
-                    }
-                );
+                key: key,
+                name: items[i],
+                owner: this.state.name
+            });
         }
         this.setState({items: itemComponents});
     }
@@ -62,8 +49,8 @@ export default class BreakdownGroup extends React.Component {
                     <BreakdownItem
                         key={item.key}
                         id={item.key}
-                        label={item.label}
-                        group={item.group}
+                        name={item.name}
+                        owner={item.owner}
                         moveItemRandomly={this.moveItemRandomly}
                     />
                 )
@@ -75,7 +62,7 @@ export default class BreakdownGroup extends React.Component {
         return (
           <div className="breakdownGroup">
                 <div className="breakdownGroup-header">
-                    <h5>{this.props.label}</h5>
+                    <h5>{this.props.name}</h5>
                     <hr/>
                     <ul className="breakdownGroup-body">
                         {this.renderItems(this.state.items)}

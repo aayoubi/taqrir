@@ -102,8 +102,6 @@ export function retrieveInitialBreakdowns(data) {
             return { "name": key, "items": items };
         })
         .value();
-    console.log('breakdowns');
-    console.log(breakdowns);
     return breakdowns;
 }
 

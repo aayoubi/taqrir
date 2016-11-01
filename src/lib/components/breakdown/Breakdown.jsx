@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import React, { PropTypes } from 'react';
 
 import BreakdownGroup from './BreakdownGroup.jsx';
@@ -27,7 +28,8 @@ export default class Breakdown extends React.Component {
             const key = getUID();
             groups.push({ 
                     key: key,
-                    label: group.name,
+                    id: key,
+                    name: group.name,
                     items: group.items
                 }
             );
@@ -38,13 +40,22 @@ export default class Breakdown extends React.Component {
     moveItemRandomly(item, group) {
         console.log('-- breakdown --');
         console.log(item);
-        let newRandomDestinationGroup = null;
-        while(newRandomDestinationGroup === group || newRandomDestinationGroup == null) {
-            newRandomDestinationGroup = this.state.groups[Math.floor(this.state.groups.length * Math.random())];
+        console.log(group);
+        const groups = this.state.groups;
+        const sourceGroup = _.find(groups, function(g) { return g.name === group; })
+        const destinationGroup = _.sample(groups);
+        console.log(sourceGroup);
+        console.log(destinationGroup);
+        // add to dest
+        destinationGroup.items.push(item);
+        // remove from src
+        for(var i = 0; i < sourceGroup.items.length; i++) {
+            if(sourceGroup.items[i] === item) {
+                sourceGroup.items.splice(i, 1);
+            }
         }
-        console.log(newRandomDestinationGroup);
-        console.log("moving randomly from [" + group + "] to [" + newRandomDestinationGroup + "]");
-        console.log('-- breakdown --');
+        this.setState({ groups: groups });
+        this.props.onBreakdownChange(groups);
     }
 
     handleSubmitCallback() {
@@ -53,10 +64,12 @@ export default class Breakdown extends React.Component {
 
     renderGroups(groups) {
         return groups.map(function(group) {
+            const key = getUID();
             return (
                     <BreakdownGroup
-                        key={group.key}
-                        label={group.label}
+                        key={key}
+                        id={key}
+                        name={group.name}
                         items={group.items}
                         moveItemRandomly={this.moveItemRandomly}
                     />
