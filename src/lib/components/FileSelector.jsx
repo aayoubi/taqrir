@@ -9,8 +9,6 @@ class FileSelector extends React.Component {
   }
 
   onChange(evt) {
-    console.log('loading change...')
-    console.log(this);
     var callback = function(status, data) {
       if (status === 'error') {
         console.log('Failed to read and parse the provided mxtime report');
