@@ -23,17 +23,15 @@ export default class Breakdown extends React.Component {
     buildGroupsList(props) {
         console.log("building breakdowns...")
         const groups = []
-        for (let group in props.groups) {
-            if(props.groups.hasOwnProperty(group)) {
-                const key = getUID();
-                groups.push({ 
-                        key: key,
-                        label: group,
-                        items: props.groups[group]
-                    }
-                );
-            }
-        }
+        props.groups.forEach(function(group) {
+            const key = getUID();
+            groups.push({ 
+                    key: key,
+                    label: group.name,
+                    items: group.items
+                }
+            );
+        });
         this.setState({ groups: groups });
     }
 

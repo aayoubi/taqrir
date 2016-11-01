@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {cutAndSlice, extractActivities} from '../tools/CustomDataExtractor.js';
 import FileSelector from './FileSelector.jsx';
 import TeamTable from './TeamTable.jsx';
 import UserTables from './UserTables.jsx';
 import Breakdown from './breakdown/Breakdown.jsx';
+import {retrieveInitialBreakdowns, retrieveDataPerUser} from '../tools/CustomDataExtractor.js';
 
 export default class ActivityTable extends React.Component {
     constructor(props) {
@@ -14,24 +14,32 @@ export default class ActivityTable extends React.Component {
             dataPerUser: [],
             breakdowns: []
         }
-        this.handleFileSelect = this.handleFileSelect.bind(this);
+        this.onFileSelect = this.onFileSelect.bind(this);
+        this.onBreakdownChange = this.onBreakdownChange.bind(this);
     }
 
-    handleFileSelect(data) {
-      const slicedData = cutAndSlice(data);
+    onFileSelect(data) {
+      const breakdowns = retrieveInitialBreakdowns(data);
+      const dataPerUser = retrieveDataPerUser(data);
       this.setState({
-        dataGlobal: slicedData.dataGlobal,
-        dataPerUser: slicedData.dataPerUser,
-        breakdowns: slicedData.breakdowns
+        dataGlobal: data,
+        dataPerUser: dataPerUser,
+        breakdowns: breakdowns
       });
+    }
+
+    onBreakdownChange(breakdowns) {
+      currentState = this.state ;
+      currentState.breakdowns = breakdowns;
+      this.setState(currentState);
     }
 
     render() {  
       return (
           <div className="mxTimeTable">
-              <FileSelector onFileSelect={this.handleFileSelect} />
+              <FileSelector onFileSelect={this.onFileSelect} />
               <hr/>
-              <Breakdown groups={this.state.breakdowns} />
+              <Breakdown groups={this.state.breakdowns} onBreakdownChange={this.onBreakdownChange}/>
               <TeamTable dataGlobal={this.state.dataGlobal} groups={this.state.breakdowns} />
               <UserTables dataPerUser={this.state.dataPerUser} groups={this.state.breakdowns} />
           </div>

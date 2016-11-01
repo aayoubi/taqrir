@@ -27,10 +27,10 @@ export default class BreakdownGroup extends React.Component {
     }
 
     moveItemRandomly(item) {
-        console.log('--- group move ---')
+        console.log('--- clicked on ---' + item)
         console.log(item);
         console.log(this);
-        console.log("moving randomly")
+        console.log("removing item")
         const itemsUpdated = this.state.items;
         for(var i = 0; i < itemsUpdated.length; i++) {
             if(itemsUpdated[i].key === item.id) {
@@ -38,7 +38,7 @@ export default class BreakdownGroup extends React.Component {
                 this.setState({items: itemsUpdated})
             }
         }
-        console.log('--- group move ---')
+        // console.log('--- group move ---')
         // this.props.moveItemRandomly(item, this.state.label);
     }
 

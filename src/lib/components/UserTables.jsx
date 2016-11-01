@@ -10,10 +10,11 @@ class UserTables extends React.Component {
   }
 
   render() {
+    const groups = this.props.groups;
     const userNodes = this.props.dataPerUser.map(function(user) {
       const waste = extractWaste(user.data)
       const pieChart = extractPieChartData(user.data);
-      const drilldownChart = extractDrilldownChartData(user.data);
+      const drilldownChart = extractDrilldownChartData(user.data, groups);
       const firstName = user.name.split(',')[1]
       const lastName = user.name.split(',')[0]
       return (

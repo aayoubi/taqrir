@@ -15,17 +15,20 @@ class TeamTable extends React.Component {
   render() {
     const waste = extractWaste(this.props.dataGlobal)
     const pieChart = extractPieChartData(this.props.dataGlobal);
-    const drilldownChart = extractDrilldownChartData(this.props.dataGlobal);
-
-    return (
-      <div className="team">
-        <Label title="This team ♘" manDays={waste} />
-        <PieChart data={pieChart}/>
-        <DrillDownBarChart 
-          seriesData={drilldownChart.seriesData} 
-          drilldownData={drilldownChart.drilldownData} />
-      </div>
-    );
+    const drilldownChart = extractDrilldownChartData(this.props.dataGlobal, this.props.groups);
+    if (waste > 0) {
+      return (
+        <div className="team">
+          <Label title="This team ♘" manDays={waste} />
+          <PieChart data={pieChart}/>
+          <DrillDownBarChart 
+            seriesData={drilldownChart.seriesData} 
+            drilldownData={drilldownChart.drilldownData} />
+        </div>
+      );
+    } else {
+      return (null);
+    }
   }
 }
 

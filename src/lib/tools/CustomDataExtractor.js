@@ -51,34 +51,6 @@ export function handleFileSelect(evt, callback) {
   reader.readAsText(files[0], "UTF-8");
 }
 
-export function extractDrilldownChartData(data) {
-    const highchartsData = _.chain(data)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .map(function(group, key) {
-            return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; 
-        })
-        .value();
-
-    const highchartsDrilldownData = [];
-    _.chain(data)
-        .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .each(function(group, key) {
-            var project = { "name": key, "id": key, "data": [] };
-            project.data = _.chain(group)
-                .groupBy(function(e) { return e.activity; })
-                .map(function(group, key) { 
-                    return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; 
-                })
-                .value();
-            highchartsDrilldownData.push(project);
-        });
-
-    return {
-        "seriesData": highchartsData,
-        "drilldownData": highchartsDrilldownData
-    };
-}
-
 export function extractWaste(data) {
     return _.reduce(data, function(m, e) { return m + e.waste; }, 0);
 }
@@ -90,28 +62,39 @@ export function extractPieChartData(data) {
         .value();
 }
 
-function extractDrilldownData(activities, breakdowns) {
-    const seriesData = []
-    const drilldownData = []
-    breakdowns.forEach(function(breakdown) {
-        const series = { "name": breakdown.name, "drilldown": breakdown.name, "y": 0 } ;
-        const drilldown = { "id": breakdown.name, "data": [] } ;
+function reduceActivitiesData(data) {
+    return _.chain(data)
+        .groupBy(function(e) { return e.activity; })
+        .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .value();
+}
+
+export function extractDrilldownChartData(data, groups) {
+    const seriesData = [];
+    const drilldownData = [];
+    const activities = reduceActivitiesData(data);
+    groups.forEach(function(group) {
+        const series = { "name": group.name, "drilldown": group.name, "y": 0 } ;
+        const drilldown = { "id": group.name, "data": [] } ;
         activities.forEach(function(activity) {
-            if(breakdown.items.indexOf(activity.name) >= 0) {
+            if(group.items.indexOf(activity.name) >= 0) {
                 series.y += activity.y;
                 drilldown.data.push([activity.name, activity.y]);
             }
-        })
-        seriesData.push(series);
-        drilldownData.push(drilldown);
+        });
+        if(series.y > 0) {
+            seriesData.push(series);
+            drilldownData.push(drilldown);
+        }
     });
+
     return {
         "seriesData": seriesData,
         "drilldownData": drilldownData
     };
 }
 
-function createBreakdowns(data) {
+export function retrieveInitialBreakdowns(data) {
     const breakdowns = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
         .map(function(group, key) {
@@ -124,7 +107,7 @@ function createBreakdowns(data) {
     return breakdowns;
 }
 
-function retrieveDataPerUser(data) {
+export function retrieveDataPerUser(data) {
     const dataPerUser = [];
     _.chain(data)
         .map(function(e) { return e.user; })
@@ -140,15 +123,4 @@ function retrieveDataPerUser(data) {
             });
         });
     return dataPerUser;
-}
-
-export function cutAndSlice(data) {
-    const dataPerUser = retrieveDataPerUser(data);
-    const breakdowns = createBreakdowns(data);
-
-    return {
-        dataGlobal: data,
-        dataPerUser: dataPerUser,
-        breakdowns: breakdowns
-    };
 }
