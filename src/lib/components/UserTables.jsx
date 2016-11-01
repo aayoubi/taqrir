@@ -2,6 +2,7 @@ import React from 'react';
 import Label from './chart/Label.jsx'
 import PieChart from './chart/PieChart.jsx'
 import DrillDownBarChart from './chart/DrillDownBarChart.jsx'
+import {extractWaste, extractPieChartData, extractDrilldownChartData} from '../tools/CustomDataExtractor.js';
 
 class UserTables extends React.Component {
   constructor(props) {
@@ -9,20 +10,21 @@ class UserTables extends React.Component {
   }
 
   render() {
-    var chartNodes = this.props.dataPerUser.map(function(userData) {
-      var pieKey = userData.id
-      var drilldownKey = userData.id + "drilldown"
-      var firstName = userData.user.split(',')[1]
-      var lastName = userData.user.split(',')[0]
+    const userNodes = this.props.dataPerUser.map(function(user) {
+      const waste = extractWaste(user.data)
+      const pieChart = extractPieChartData(user.data);
+      const drilldownChart = extractDrilldownChartData(user.data);
+      const firstName = user.name.split(',')[1]
+      const lastName = user.name.split(',')[0]
       return (
-        <div className="user" key={userData.id + "div"}>
-          <Label title={firstName + " " + lastName} manDays={userData.md}/>
-          <PieChart data={userData.chart} key={userData.id + "pie"} />
-          <DrillDownBarChart seriesData={userData.drilldown.seriesData} drilldownData={userData.drilldown.drilldownData} key={userData.id + "drilldown"}/>
+        <div className="user" key={user.id + "div"}>
+          <Label title={firstName + " " + lastName} manDays={waste}/>
+          <PieChart data={pieChart} key={user.id + "pie"} />
+          <DrillDownBarChart seriesData={drilldownChart.seriesData} drilldownData={drilldownChart.drilldownData} key={user.id + "drilldown"}/>
         </div>
       );
     });
-    if(chartNodes.length == 0) {
+    if(userNodes.length == 0) {
       return (
         <div className="users"/>
       );
@@ -30,7 +32,7 @@ class UserTables extends React.Component {
       return (
         <div className="users">
           <h1>Team Members</h1>
-          {chartNodes}
+          {userNodes}
         </div>
       );
     }

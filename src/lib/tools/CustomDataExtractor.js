@@ -51,79 +51,24 @@ export function handleFileSelect(evt, callback) {
   reader.readAsText(files[0], "UTF-8");
 }
 
-function extractTeamData(data) {
-    const dataPerTeam = {};
-    dataPerTeam.id = getUID();
-    dataPerTeam.md = _.reduce(data, function(m, e) { return m + e.waste; }, 0);
-    dataPerTeam.chart = _.chain(data)
-        .groupBy(function(e) { return e.activity; })
-        .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-        .value();
-    dataPerTeam.drilldown = retrieveBreakdownData(data);
-    return dataPerTeam;
-}
-
-function extractUserData(data) {
-    const dataPerUser = [];
-    _.chain(data)
-        .map(function(e) { return e.user; })
-        .uniq()
-        .each(function(user) {
-            const rawDataPerUser = _.chain(data)
-            .filter(function(e) { return e.user === user; })
-            .value();
-
-            const transformedReportDataPerUser = _.chain(rawDataPerUser)
-                .filter(function(e) { return e.user === user; })
-                .groupBy(function(e) { return e.activity; })
-                .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-                .value();
-            const userManDays = _.reduce(transformedReportDataPerUser, function(m, e) { return m + e.y; }, 0);
-
-            const groupedReportDrilldownPerUser = [];
-            const groupedReportDataPerUser = _.chain(rawDataPerUser)
-                .groupBy(function(e) { return e.activity.split('-')[0]; })
-                .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
-                .value();
-
-            _.chain(rawDataPerUser)
-                .groupBy(function(e) { return e.activity.split('-')[0]; })
-                .each(function(group, key) {
-                    var project = { "name": key, "id": key, data: [] };
-                    project.data = _.chain(group)
-                        .groupBy(function(e) { return e.activity; })
-                        .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
-                        .value();
-                        groupedReportDrilldownPerUser.push(project);
-                });
-
-            const drilldownDataPerUser = retrieveBreakdownData(rawDataPerUser);
-
-            dataPerUser.push({
-                "id": getUID(),
-                "user": user,
-                "chart": transformedReportDataPerUser,
-                "md": userManDays,
-                "drilldown": drilldownDataPerUser
-            });
-        });
-    return dataPerUser;
-}
-
-function retrieveBreakdownData(data) {
+export function extractDrilldownChartData(data) {
     const highchartsData = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
-        .map(function(group, key) { return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .map(function(group, key) {
+            return { "name": key, "drilldown": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; 
+        })
         .value();
 
     const highchartsDrilldownData = [];
     _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
         .each(function(group, key) {
-            var project = { "name": key, "id": key, data: [] };
+            var project = { "name": key, "id": key, "data": [] };
             project.data = _.chain(group)
                 .groupBy(function(e) { return e.activity; })
-                .map(function(group, key) { return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; })
+                .map(function(group, key) { 
+                    return [key, _(group).reduce(function(m, x) { return m + x.waste; }, 0) ]; 
+                })
                 .value();
             highchartsDrilldownData.push(project);
         });
@@ -134,25 +79,75 @@ function retrieveBreakdownData(data) {
     };
 }
 
-export function cutAndSlice(data) {
-    const dataPerTeam = extractTeamData(data);
-    const dataPerUser = extractUserData(data);
+export function extractWaste(data) {
+    return _.reduce(data, function(m, e) { return m + e.waste; }, 0);
+}
 
-    const breakdownsRaw = _.chain(data)
+export function extractPieChartData(data) {
+    return _.chain(data)
+        .groupBy(function(e) { return e.activity; })
+        .map(function(group, key) { return { "name": key, "y": _(group).reduce(function(m, x) { return m + x.waste; }, 0) }; })
+        .value();
+}
+
+function extractDrilldownData(activities, breakdowns) {
+    const seriesData = []
+    const drilldownData = []
+    breakdowns.forEach(function(breakdown) {
+        const series = { "name": breakdown.name, "drilldown": breakdown.name, "y": 0 } ;
+        const drilldown = { "id": breakdown.name, "data": [] } ;
+        activities.forEach(function(activity) {
+            if(breakdown.items.indexOf(activity.name) >= 0) {
+                series.y += activity.y;
+                drilldown.data.push([activity.name, activity.y]);
+            }
+        })
+        seriesData.push(series);
+        drilldownData.push(drilldown);
+    });
+    return {
+        "seriesData": seriesData,
+        "drilldownData": drilldownData
+    };
+}
+
+function createBreakdowns(data) {
+    const breakdowns = _.chain(data)
         .groupBy(function(e) { return e.activity.split('-')[0]; })
         .map(function(group, key) {
             const items = _.chain(group).map(function(e) { return e.activity; }).uniq().value();
-            return { key: key, items: items };
+            return { "name": key, "items": items };
         })
         .value();
+    console.log('breakdowns');
+    console.log(breakdowns);
+    return breakdowns;
+}
 
-    const breakdowns = {};
-        breakdownsRaw.forEach(function (breakdown) {
-        breakdowns[breakdown.key] = breakdown.items;
-    });
+function retrieveDataPerUser(data) {
+    const dataPerUser = [];
+    _.chain(data)
+        .map(function(e) { return e.user; })
+        .uniq()
+        .each(function(user) {
+            const rawDataPerUser = _.chain(data)
+                .filter(function(e) { return e.user === user; })
+                .value();
+            dataPerUser.push({
+                "id": getUID(),
+                "name": user,
+                "data": rawDataPerUser
+            });
+        });
+    return dataPerUser;
+}
+
+export function cutAndSlice(data) {
+    const dataPerUser = retrieveDataPerUser(data);
+    const breakdowns = createBreakdowns(data);
 
     return {
-        dataGlobal: dataPerTeam,
+        dataGlobal: data,
         dataPerUser: dataPerUser,
         breakdowns: breakdowns
     };

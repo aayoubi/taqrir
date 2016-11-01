@@ -1,11 +1,10 @@
 import React from 'react';
 
-import {cutAndSlice} from '../tools/CustomDataExtractor.js';
+import {cutAndSlice, extractActivities} from '../tools/CustomDataExtractor.js';
 import FileSelector from './FileSelector.jsx';
 import TeamTable from './TeamTable.jsx';
 import UserTables from './UserTables.jsx';
 import Breakdown from './breakdown/Breakdown.jsx';
-
 
 export default class ActivityTable extends React.Component {
     constructor(props) {
@@ -13,12 +12,12 @@ export default class ActivityTable extends React.Component {
         this.state = {
             dataGlobal: {},
             dataPerUser: [],
-            breakdowns: {}
+            breakdowns: []
         }
         this.handleFileSelect = this.handleFileSelect.bind(this);
     }
 
-    extractCustomData (data) {
+    handleFileSelect(data) {
       const slicedData = cutAndSlice(data);
       this.setState({
         dataGlobal: slicedData.dataGlobal,
@@ -27,18 +26,14 @@ export default class ActivityTable extends React.Component {
       });
     }
 
-    handleFileSelect(data) {
-      this.extractCustomData(data);
-    }
-
     render() {  
       return (
           <div className="mxTimeTable">
               <FileSelector onFileSelect={this.handleFileSelect} />
               <hr/>
               <Breakdown groups={this.state.breakdowns} />
-              <TeamTable dataGlobal={this.state.dataGlobal} />
-              <UserTables dataPerUser={this.state.dataPerUser} />
+              <TeamTable dataGlobal={this.state.dataGlobal} groups={this.state.breakdowns} />
+              <UserTables dataPerUser={this.state.dataPerUser} groups={this.state.breakdowns} />
           </div>
       );
     }
