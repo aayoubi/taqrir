@@ -1,16 +1,18 @@
 import _ from 'underscore';
 import React, { PropTypes } from 'react';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 
 import BreakdownGroup from './BreakdownGroup.jsx';
 import {getUID} from '../../tools/utilities.js';
 
-export default class Breakdown extends React.Component {
+
+class Breakdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             groups: []
         }
-        this.moveItemRandomly = this.moveItemRandomly.bind(this);
     }
     
     componentDidMount() {
@@ -37,6 +39,19 @@ export default class Breakdown extends React.Component {
         this.setState({ groups: groups });
     }
 
+    renderGroup(i) {
+        const key = getUID();
+        return (
+            <div key={i} className="groupp">
+                <BreakdownGroup 
+                    id={key} 
+                    name={this.state.groups[i].name} 
+                    items={this.state.groups[i].items} 
+                    moveItemRandomly={this.moveItemRandomly} />
+            </div>
+        );
+    }
+
     moveItemRandomly(item, group) {
         console.log('-- breakdown --');
         console.log(item);
@@ -58,30 +73,18 @@ export default class Breakdown extends React.Component {
         this.props.onBreakdownChange(groups);
     }
 
-    handleSubmitCallback() {
-        console.log('group created');
-    }
-
-    renderGroups(groups) {
-        return groups.map(function(group) {
-            const key = getUID();
-            return (
-                    <BreakdownGroup
-                        key={key}
-                        id={key}
-                        name={group.name}
-                        items={group.items}
-                        moveItemRandomly={this.moveItemRandomly}
-                    />
-                )
-        }, this);
-    }
 
     render() {
+        const groups = [];
+        for(let i = 0; i < this.state.groups.length ; i++) {
+            groups.push(this.renderGroup(i))
+        }
         return (
             <div className="containers">
-                {this.renderGroups(this.state.groups)}
+                {groups}
             </div>
         );
     }
 }
+
+export default DragDropContext(HTML5Backend)(Breakdown);

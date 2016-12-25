@@ -1,11 +1,34 @@
 import React, { PropTypes } from 'react';
+import { DropTarget } from 'react-dnd';
 
 import BreakdownItem from './BreakdownItem.jsx';
 import BreakdownGroupForm from './BreakdownGroupForm.jsx';
 import {getUID} from '../../tools/utilities.js';
 
+const Types = {
+    ITEM: 'item'
+};
 
-export default class BreakdownGroup extends React.Component {
+const boxTarget = {
+    drop(props, monitor, component) {
+        console.log('dropping ');
+        console.log(props);
+        console.log(monitor);
+        return {
+            name: "ali" 
+        };
+    }
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
+    };
+}
+
+class BreakdownGroup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +36,6 @@ export default class BreakdownGroup extends React.Component {
             name: props.name,
             items: []
         }
-        this.moveItemRandomly = this.moveItemRandomly.bind(this);
     }
 
     componentDidMount() {
@@ -22,12 +44,6 @@ export default class BreakdownGroup extends React.Component {
 
     componentWillReceiveProps(newProps) {
         this.buildItemsList(newProps.items);
-    }
-
-    moveItemRandomly(item) {
-        console.log('--- clicked on ---' + item)
-        // FIXME should we pass the whole state here as well ???
-        this.props.moveItemRandomly(item, this.state.name);
     }
 
     buildItemsList(items) {
@@ -43,32 +59,37 @@ export default class BreakdownGroup extends React.Component {
         this.setState({items: itemComponents});
     }
 
-    renderItems(items) {
-        return items.map(function(item) {
-            return (
-                    <BreakdownItem
-                        key={item.key}
-                        id={item.key}
-                        name={item.name}
-                        owner={item.owner}
-                        moveItemRandomly={this.moveItemRandomly}
-                    />
-                )
-        }, this);
+    renderItem(i) {
+        return (
+            <BreakdownItem
+                key={i}
+                id={i}
+                name={this.state.items[i].name}
+                owner={this.state.items[i].owner}
+            />
+        );
     }
 
     render() {
         // TODO the group title should be editable
-        return (
+        const items = [];
+        for(let i = 0; i < this.state.items.length ; i++) {
+            items.push(this.renderItem(i))
+        }
+        const { connectDropTarget, isOver } = this.props;
+
+        return connectDropTarget(
           <div className="breakdownGroup">
                 <div className="breakdownGroup-header">
                     <h5>{this.props.name}</h5>
                     <hr/>
-                    <ul className="breakdownGroup-body">
-                        {this.renderItems(this.state.items)}
-                    </ul>
                 </div>
+                <ul className="breakdownGroup-body">
+                    {items}
+                </ul>
           </div>
         );
     }
 }
+
+export default DropTarget(Types.ITEM, boxTarget, collect)(BreakdownGroup);
