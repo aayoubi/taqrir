@@ -7,18 +7,11 @@ const Types = {
 
 const itemSource = {
     beginDrag(props, monitor, component) {
-        console.log('starting drag');
-        return props;
-    },
-
-    endDrag(props, monitor, component) {
-        console.log('end drag');
-        const item = monitor.getItem();
-        const dropResult = monitor.getDropResult();
-
-        if (dropResult) {
-            console.log(`You dropped ${item.name} into ${dropResult.name}!`);
-        }
+        console.log('starting drag in item');
+        return {
+            'name': props.name,
+            'owner': props.owner
+        };
     }
 };
 
@@ -34,14 +27,12 @@ class BreakdownItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.id,
             name: props.name,
             owner: props.owner
         }
     }
     
     render() {
-        const { id } = this.props;
         const { isDragging, connectDragSource } = this.props;
         const opacity = isDragging ? 0.1 : 1;
 

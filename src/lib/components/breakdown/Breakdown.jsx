@@ -13,75 +13,67 @@ class Breakdown extends React.Component {
         this.state = {
             groups: []
         }
+        this.moveBreakdownItem = this.moveBreakdownItem.bind(this);
     }
     
     componentDidMount() {
-        this.buildGroupsList(this.props);
+        // FIXME 20170122: again, why am I doing this? cf. BreakdownGroup.componentDidMount()
+        this.buildGroupsList(this.props.groups);
     }
 
     componentWillReceiveProps(newProps){
-        this.buildGroupsList(newProps);
+        this.buildGroupsList(newProps.groups);
     }
     
-    buildGroupsList(props) {
+    buildGroupsList(groups) {
         console.log("building breakdowns...")
-        const groups = []
-        props.groups.forEach(function(group) {
-            const key = getUID();
-            groups.push({ 
-                    key: key,
-                    id: key,
-                    name: group.name,
-                    items: group.items
-                }
-            );
-        });
-        this.setState({ groups: groups });
+        const g = []
+        for(let i = 0; i < groups.length ; i++) {
+            g.push({ 
+                    name: groups[i].name,
+                    items: groups[i].items
+                });
+        }
+        this.setState({ groups: g });
     }
 
     renderGroup(i) {
-        const key = getUID();
+        const group = this.state.groups[i];
         return (
-            <div key={i} className="groupp">
-                <BreakdownGroup 
-                    id={key} 
-                    name={this.state.groups[i].name} 
-                    items={this.state.groups[i].items} 
-                    moveItemRandomly={this.moveItemRandomly} />
-            </div>
+            <BreakdownGroup 
+                key={group.name}
+                name={group.name} 
+                items={group.items} 
+                moveBreakdownItem={this.moveBreakdownItem} />
         );
     }
 
-    moveItemRandomly(item, group) {
-        console.log('-- breakdown --');
-        console.log(item);
-        console.log(group);
+    moveBreakdownItem(item, dst) {
         const groups = this.state.groups;
-        const sourceGroup = _.find(groups, function(g) { return g.name === group; })
-        const destinationGroup = _.sample(groups);
-        console.log(sourceGroup);
-        console.log(destinationGroup);
-        // add to dest
-        destinationGroup.items.push(item);
+        const src = _.find(groups, function(g) { return g.name === item.owner; })
         // remove from src
-        for(var i = 0; i < sourceGroup.items.length; i++) {
-            if(sourceGroup.items[i] === item) {
-                sourceGroup.items.splice(i, 1);
+        for(let i = 0; i < src.items.length; i++) {
+            if(src.items[i] === item.name) {
+                src.items.splice(i, 1);
             }
         }
+        // push to dst
+        dst.items.push(item.name);
+        // update the whole state
         this.setState({ groups: groups });
+        // FIXME this is very slow...refreshes the whole thing
         this.props.onBreakdownChange(groups);
     }
 
 
     render() {
-        const groups = [];
+        const renderedGroups = [];
         for(let i = 0; i < this.state.groups.length ; i++) {
-            groups.push(this.renderGroup(i))
+            renderedGroups.push(this.renderGroup(i))
         }
         return (
             <div className="containers">
-                {groups}
+                {renderedGroups}
             </div>
         );
     }

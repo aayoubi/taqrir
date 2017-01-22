@@ -9,14 +9,16 @@ const Types = {
     ITEM: 'item'
 };
 
-const boxTarget = {
+const breakdownTarget = {
     drop(props, monitor, component) {
-        console.log('dropping ');
-        console.log(props);
-        console.log(monitor);
-        return {
-            name: "ali" 
-        };
+        console.log('dropping in group');
+        console.log(monitor.getItem());
+        console.log('---');
+        props.moveBreakdownItem(monitor.getItem(), props);
+    },
+
+    canDrop(props, monitor, component) {
+        return props.name != monitor.getItem().owner;
     }
 };
 
@@ -32,13 +34,14 @@ class BreakdownGroup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.id,
             name: props.name,
             items: []
         }
     }
 
     componentDidMount() {
+        // FIXME 20170122: why am i doing this? can't I handle the render updates in a different way?
+        // eno i'm calling setState on each componentDidMount, it seems counterintuitive to me!
         this.buildItemsList(this.props.items);
     }
 
@@ -47,26 +50,21 @@ class BreakdownGroup extends React.Component {
     }
 
     buildItemsList(items) {
-        const itemComponents = [];
-        for(var i = 0 ; i < items.length ; i++) {
-            const key = getUID();
-            itemComponents.push({
-                key: key,
+        const list_of_items = [];
+        for(let i = 0 ; i < items.length ; i++) {
+            list_of_items.push({
                 name: items[i],
                 owner: this.state.name
             });
         }
-        this.setState({items: itemComponents});
+        this.setState({ items: list_of_items });
     }
 
     renderItem(i) {
+        const name = this.state.items[i].name;
+        const owner = this.state.items[i].owner;
         return (
-            <BreakdownItem
-                key={i}
-                id={i}
-                name={this.state.items[i].name}
-                owner={this.state.items[i].owner}
-            />
+            <BreakdownItem key={name} name={name} owner={owner} />
         );
     }
 
@@ -76,10 +74,16 @@ class BreakdownGroup extends React.Component {
         for(let i = 0; i < this.state.items.length ; i++) {
             items.push(this.renderItem(i))
         }
-        const { connectDropTarget, isOver } = this.props;
+        const { canDrop, isOver, connectDropTarget } = this.props;
+        const isActive = canDrop && isOver;
+
+        let backgroundColor = '#E2E4E6';
+        if (isActive) {
+            backgroundColor = '#FFE4E6';
+        }
 
         return connectDropTarget(
-          <div className="breakdownGroup">
+          <div className="breakdownGroup" style={{backgroundColor}}>
                 <div className="breakdownGroup-header">
                     <h5>{this.props.name}</h5>
                     <hr/>
@@ -92,4 +96,4 @@ class BreakdownGroup extends React.Component {
     }
 }
 
-export default DropTarget(Types.ITEM, boxTarget, collect)(BreakdownGroup);
+export default DropTarget(Types.ITEM, breakdownTarget, collect)(BreakdownGroup);
