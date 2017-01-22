@@ -16,27 +16,10 @@ class Breakdown extends React.Component {
         this.moveBreakdownItem = this.moveBreakdownItem.bind(this);
     }
     
-    componentDidMount() {
-        // FIXME 20170122: again, why am I doing this? cf. BreakdownGroup.componentDidMount()
-        this.buildGroupsList(this.props.groups);
-    }
-
     componentWillReceiveProps(newProps){
-        this.buildGroupsList(newProps.groups);
+        this.setState({ groups: newProps.groups })
     }
     
-    buildGroupsList(groups) {
-        console.log("building breakdowns...")
-        const g = []
-        for(let i = 0; i < groups.length ; i++) {
-            g.push({ 
-                    name: groups[i].name,
-                    items: groups[i].items
-                });
-        }
-        this.setState({ groups: g });
-    }
-
     renderGroup(i) {
         const group = this.state.groups[i];
         return (
