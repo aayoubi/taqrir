@@ -30,19 +30,15 @@ class Breakdown extends React.Component {
         this.props.onBreakdownChange(groups);
     }
 
-    renderGroup(group) {
-        return (
-            <BreakdownGroup 
-                key={group.name}
-                name={group.name} 
-                items={group.items} 
-                moveBreakdownItem={this.moveBreakdownItem} />
-        );
-    }
-
     render() {
         const renderedGroups = _.map(this.state.groups, function(e) {
-            return this.renderGroup(e);
+            return (
+                <BreakdownGroup 
+                    key={e.name}
+                    name={e.name} 
+                    items={e.items} 
+                    moveBreakdownItem={this.moveBreakdownItem} />
+            )
         }.bind(this));
 
         return (

@@ -53,19 +53,13 @@ class BreakdownGroup extends React.Component {
         this.setState({ items: itemsWithOwners });
     }
 
-    renderItem(item) {
-        const name = item.name;
-        const owner = item.owner;
-        return (
-            <BreakdownItem key={name} name={name} owner={owner} />
-        );
-    }
-
     render() {
         // TODO the group title should be editable
         const items = _.map(this.state.items, function(e) {
-            return this.renderItem(e);
-        }.bind(this));
+            return (
+                <BreakdownItem key={e.name} name={e.name} owner={e.owner} />
+            );
+        });
 
         const { canDrop, isOver, connectDropTarget } = this.props;
         const isActive = canDrop && isOver;
@@ -77,7 +71,7 @@ class BreakdownGroup extends React.Component {
         return connectDropTarget(
           <div className="breakdownGroup" style={{backgroundColor}}>
                 <div className="breakdownGroup-header">
-                    <h5>{this.props.name}</h5>
+                    <h5>{this.state.name}</h5>
                     <hr/>
                 </div>
                 <ul className="breakdownGroup-body">
