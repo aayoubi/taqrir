@@ -20,21 +20,11 @@ class Breakdown extends React.Component {
         this.setState({ groups: newProps.groups })
     }
     
-    renderGroup(i) {
-        const group = this.state.groups[i];
-        return (
-            <BreakdownGroup 
-                key={group.name}
-                name={group.name} 
-                items={group.items} 
-                moveBreakdownItem={this.moveBreakdownItem} />
-        );
-    }
-
     moveBreakdownItem(item, dst) {
         const groups = this.state.groups;
         const src = _.find(groups, function(g) { return g.name === item.owner; })
         // remove from src
+        // TODO replace splice by filter
         for(let i = 0; i < src.items.length; i++) {
             if(src.items[i] === item.name) {
                 src.items.splice(i, 1);
@@ -48,6 +38,16 @@ class Breakdown extends React.Component {
         this.props.onBreakdownChange(groups);
     }
 
+    renderGroup(i) {
+        const group = this.state.groups[i];
+        return (
+            <BreakdownGroup 
+                key={group.name}
+                name={group.name} 
+                items={group.items} 
+                moveBreakdownItem={this.moveBreakdownItem} />
+        );
+    }
 
     render() {
         const renderedGroups = [];

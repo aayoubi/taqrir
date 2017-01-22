@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { DropTarget } from 'react-dnd';
+import _ from 'underscore';
 
 import BreakdownItem from './BreakdownItem.jsx';
 import BreakdownGroupForm from './BreakdownGroupForm.jsx';
@@ -40,29 +41,24 @@ class BreakdownGroup extends React.Component {
     }
 
     componentDidMount() {
-        // FIXME 20170122: why am i doing this? can't I handle the render updates in a different way?
-        // eno i'm calling setState on each componentDidMount, it seems counterintuitive to me!
-        this.buildItemsList(this.props.items);
+        this.enhanceItemsList(this.props.items);
     }
 
     componentWillReceiveProps(newProps) {
-        this.buildItemsList(newProps.items);
+        this.enhanceItemsList(newProps.items);
     }
 
-    buildItemsList(items) {
-        const list_of_items = [];
-        for(let i = 0 ; i < items.length ; i++) {
-            list_of_items.push({
-                name: items[i],
-                owner: this.state.name
-            });
-        }
-        this.setState({ items: list_of_items });
+    enhanceItemsList(items) {
+        const groupName = this.state.name;
+        const itemsWithOwners = _.map(this.props.items, function(e) {
+            return { name: e, owner: groupName }
+        });
+        this.setState({ items: itemsWithOwners });
     }
 
-    renderItem(i) {
-        const name = this.state.items[i].name;
-        const owner = this.state.items[i].owner;
+    renderItem(item) {
+        const name = item.name;
+        const owner = item.owner;
         return (
             <BreakdownItem key={name} name={name} owner={owner} />
         );
@@ -70,13 +66,12 @@ class BreakdownGroup extends React.Component {
 
     render() {
         // TODO the group title should be editable
-        const items = [];
-        for(let i = 0; i < this.state.items.length ; i++) {
-            items.push(this.renderItem(i))
-        }
+        const items = _.map(this.state.items, function(e) {
+            return this.renderItem(e);
+        }.bind(this));
+
         const { canDrop, isOver, connectDropTarget } = this.props;
         const isActive = canDrop && isOver;
-
         let backgroundColor = '#E2E4E6';
         if (isActive) {
             backgroundColor = '#FFE4E6';
