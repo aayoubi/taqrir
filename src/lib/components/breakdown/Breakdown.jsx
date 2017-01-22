@@ -30,8 +30,7 @@ class Breakdown extends React.Component {
         this.props.onBreakdownChange(groups);
     }
 
-    renderGroup(i) {
-        const group = this.state.groups[i];
+    renderGroup(group) {
         return (
             <BreakdownGroup 
                 key={group.name}
@@ -42,13 +41,16 @@ class Breakdown extends React.Component {
     }
 
     render() {
-        const renderedGroups = [];
-        for(let i = 0; i < this.state.groups.length ; i++) {
-            renderedGroups.push(this.renderGroup(i))
-        }
+        const renderedGroups = _.map(this.state.groups, function(e) {
+            return this.renderGroup(e);
+        }.bind(this));
+
         return (
             <div className="containers">
                 {renderedGroups}
+            </div>
+            <div>
+                <BreakdownGroupForm/>
             </div>
         );
     }
