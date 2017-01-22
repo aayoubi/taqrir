@@ -49,9 +49,6 @@ class Breakdown extends React.Component {
             <div className="containers">
                 {renderedGroups}
             </div>
-            <div>
-                <BreakdownGroupForm/>
-            </div>
         );
     }
 }
