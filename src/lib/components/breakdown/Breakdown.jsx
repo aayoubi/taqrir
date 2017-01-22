@@ -23,16 +23,8 @@ class Breakdown extends React.Component {
     moveBreakdownItem(item, dst) {
         const groups = this.state.groups;
         const src = _.find(groups, function(g) { return g.name === item.owner; })
-        // remove from src
-        // TODO replace splice by filter
-        for(let i = 0; i < src.items.length; i++) {
-            if(src.items[i] === item.name) {
-                src.items.splice(i, 1);
-            }
-        }
-        // push to dst
+        src.items = _.filter(src.items, function(e) { return e != item.name; });
         dst.items.push(item.name);
-        // update the whole state
         this.setState({ groups: groups });
         // FIXME this is very slow...refreshes the whole thing
         this.props.onBreakdownChange(groups);

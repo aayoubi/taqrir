@@ -7,7 +7,6 @@ const Types = {
 
 const itemSource = {
     beginDrag(props, monitor, component) {
-        console.log('starting drag in item');
         return {
             'name': props.name,
             'owner': props.owner

@@ -12,9 +12,6 @@ const Types = {
 
 const breakdownTarget = {
     drop(props, monitor, component) {
-        console.log('dropping in group');
-        console.log(monitor.getItem());
-        console.log('---');
         props.moveBreakdownItem(monitor.getItem(), props);
     },
 
